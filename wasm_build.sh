@@ -7,5 +7,5 @@ echo "Ready in ./pkg"
 echo
 echo
 
-echo 'cp ./pkg/qrgen* "/mnt/c/Users/Erwan/SynologyDrive/development/nextjs/qrgen/components/qrgen/" is in CLIPBOARD'
-echo -n 'cp ./pkg/qrgen* "/mnt/c/Users/Erwan/SynologyDrive/development/nextjs/qrgen/components/qrgen/"' | clip.exe
+echo 'cp ./pkg/qrgen* "DESIRED_LOCATION" is in CLIPBOARD'
+echo -n 'cp ./pkg/qrgen* "DESIRED_LOCATION"' | clip.exe
