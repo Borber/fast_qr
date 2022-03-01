@@ -59,6 +59,23 @@ fn array_to_vec<const N: usize>(mat: [[bool; N]; N]) -> Vec<u8> {
     return vecu8;
 }
 
+fn bool_to_u8<const N: usize>(mat: [[bool; N]; N]) -> Vec<u8> {
+    let mut vec = Vec::with_capacity(N * N);
+
+    for line in mat {
+        let mut tmp = line.iter().map(|x| *x as u8).collect();
+        vec.append(&mut tmp);
+    }
+
+    return vec;
+}
+
+fn bool_to_u8_2<const N: usize>(mat: [[bool; N]; N]) -> Vec<u8> {
+    mat.iter()
+        .flat_map(|array| array.iter().map(|x| *x as u8))
+        .collect()
+}
+
 #[cfg(target_arch = "wasm32")]
 #[wasm_bindgen]
 pub fn qr(content: &str) -> Vec<u8> {
@@ -66,46 +83,46 @@ pub fn qr(content: &str) -> Vec<u8> {
 
     if let Some(q) = qrcode {
         return match q {
-            QRCode::V1(m) => array_to_vec(m),
-            QRCode::V2(m) => array_to_vec(m),
-            QRCode::V3(m) => array_to_vec(m),
-            QRCode::V4(m) => array_to_vec(m),
-            QRCode::V5(m) => array_to_vec(m),
-            QRCode::V6(m) => array_to_vec(m),
-            QRCode::V7(m) => array_to_vec(m),
-            QRCode::V8(m) => array_to_vec(m),
-            QRCode::V9(m) => array_to_vec(m),
-            QRCode::V10(m) => array_to_vec(m),
-            QRCode::V11(m) => array_to_vec(m),
-            QRCode::V12(m) => array_to_vec(m),
-            QRCode::V13(m) => array_to_vec(m),
-            QRCode::V14(m) => array_to_vec(m),
-            QRCode::V15(m) => array_to_vec(m),
-            QRCode::V16(m) => array_to_vec(m),
-            QRCode::V17(m) => array_to_vec(m),
-            QRCode::V18(m) => array_to_vec(m),
-            QRCode::V19(m) => array_to_vec(m),
-            QRCode::V20(m) => array_to_vec(m),
-            QRCode::V21(m) => array_to_vec(m),
-            QRCode::V22(m) => array_to_vec(m),
-            QRCode::V23(m) => array_to_vec(m),
-            QRCode::V24(m) => array_to_vec(m),
-            QRCode::V25(m) => array_to_vec(m),
-            QRCode::V26(m) => array_to_vec(m),
-            QRCode::V27(m) => array_to_vec(m),
-            QRCode::V28(m) => array_to_vec(m),
-            QRCode::V29(m) => array_to_vec(m),
-            QRCode::V30(m) => array_to_vec(m),
-            QRCode::V31(m) => array_to_vec(m),
-            QRCode::V32(m) => array_to_vec(m),
-            QRCode::V33(m) => array_to_vec(m),
-            QRCode::V34(m) => array_to_vec(m),
-            QRCode::V35(m) => array_to_vec(m),
-            QRCode::V36(m) => array_to_vec(m),
-            QRCode::V37(m) => array_to_vec(m),
-            QRCode::V38(m) => array_to_vec(m),
-            QRCode::V39(m) => array_to_vec(m),
-            QRCode::V40(m) => array_to_vec(m),
+            QRCode::V1(m) => bool_to_u8(m),  //array_to_vec(m),
+            QRCode::V2(m) => bool_to_u8(m),  //array_to_vec(m),
+            QRCode::V3(m) => bool_to_u8(m),  //array_to_vec(m),
+            QRCode::V4(m) => bool_to_u8(m),  //array_to_vec(m),
+            QRCode::V5(m) => bool_to_u8(m),  //array_to_vec(m),
+            QRCode::V6(m) => bool_to_u8(m),  //array_to_vec(m),
+            QRCode::V7(m) => bool_to_u8(m),  //array_to_vec(m),
+            QRCode::V8(m) => bool_to_u8(m),  //array_to_vec(m),
+            QRCode::V9(m) => bool_to_u8(m),  //array_to_vec(m),
+            QRCode::V10(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V11(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V12(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V13(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V14(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V15(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V16(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V17(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V18(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V19(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V20(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V21(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V22(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V23(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V24(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V25(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V26(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V27(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V28(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V29(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V30(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V31(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V32(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V33(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V34(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V35(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V36(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V37(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V38(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V39(m) => bool_to_u8(m), //array_to_vec(m),
+            QRCode::V40(m) => bool_to_u8(m), //array_to_vec(m),
         };
     }
 
