@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Version","Enum containing all possible QRCode versions"]]});

@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["fast_qr"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.60.0/core/cmp/trait.PartialEq.html\" title=\"trait core::cmp::PartialEq\">PartialEq</a>&lt;<a class=\"enum\" href=\"fast_qr/convert/svg/enum.SvgShape.html\" title=\"enum fast_qr::convert::svg::SvgShape\">SvgShape</a>&gt; for <a class=\"enum\" href=\"fast_qr/convert/svg/enum.SvgShape.html\" title=\"enum fast_qr::convert::svg::SvgShape\">SvgShape</a>","synthetic":false,"types":["fast_qr::convert::svg::SvgShape"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

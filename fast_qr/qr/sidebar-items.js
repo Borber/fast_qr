@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["QRCode","Enum containing all 40 QRCode versions"],["QRCodeError","Contains different error when QRCode could not be created"]],"struct":[["QRBuilder","Builder for `QRCode` struct"]]});
