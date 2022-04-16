@@ -178,6 +178,7 @@
 <span id="173">173</span>
 <span id="174">174</span>
 <span id="175">175</span>
+<span id="176">176</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
 <span class="doccomment">//! # Example</span>
 <span class="doccomment">//! ```rust</span>
@@ -198,14 +199,15 @@
 <span class="doccomment">//! # Example SVG</span>
 <span class="doccomment">//! ```rust</span>
 <span class="doccomment">//! use fast_qr::{ECL, Version, QRBuilder};</span>
+<span class="doccomment">//! use fast_qr::convert::svg::{SvgBuilder, SvgShape};</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! let qrcode = QRBuilder::new(&quot;https://example.com/&quot;.into())</span>
 <span class="doccomment">//!     .ecl(ECL::H)</span>
 <span class="doccomment">//!     .version(Version::V03)</span>
 <span class="doccomment">//!     .build();</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! let svg = fast_qr::convert::svg::SvgBuilder::new()</span>
-<span class="doccomment">//!     .shape(fast_qr::convert::svg::SvgShape::RoundedSquare)</span>
+<span class="doccomment">//! let svg = SvgBuilder::new()</span>
+<span class="doccomment">//!     .shape(SvgShape::RoundedSquare)</span>
 <span class="doccomment">//!     .build_qr(qrcode.unwrap());</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! println!(&quot;{}&quot;, svg);</span>
