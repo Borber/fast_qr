@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["SvgShape","Different possible Shapes"]],"struct":[["SvgBuilder","Builder for svg, can set shape, margin, background_color, dot_color"]]});
+initSidebarItems({"enum":[["SvgError","Error when converting to svg"],["SvgShape","Different possible Shapes"]],"struct":[["SvgBuilder","Builder for svg, can set shape, margin, background_color, dot_color"]]});

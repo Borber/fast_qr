@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["convert","Converts QRCode matrix to usable"],["ecl","Contains all different levels of quality. And allows to find easily max bits per version/quality pair"],["qr","Wrappers to create QRCode"],["version","Enum containing all possible QRCode versions"]]});
+initSidebarItems({"enum":[["ECL","Error Correction Coding has 4 levels"],["Version","Enum containing all possible QRCode versions"]],"mod":[["convert","Converts QRCode matrix to usable"],["qr","Wrappers to create QRCode"]]});

@@ -301,6 +301,7 @@
 <span id="296">296</span>
 <span id="297">297</span>
 <span id="298">298</span>
+<span id="299">299</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Wrappers to create QRCode</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! # Example</span>
@@ -319,6 +320,7 @@
 <span class="doccomment">//!  &lt;path d=&#39;M4,4h1v1h-1M5,4h1v1h-1M6,4h1v1h-1M7,4h1v1h-1M8,4h1v1h-1M9,4h1v1h-1M10,4h1v1h-1M12,4h1v1h-1M13,4h1v1h-1M17,4h1v1h-1M19,4h1v1h-1M22,4h1v1h-1M24,4h1v1h-1M26,4h1v1h-1M27,4h1v1h-1M28,4h1v1h-1M29,4h1v1h-1M30,4h1v1h-1M31,4h1v1h-1M32,4h1v1h-1M4,5h1v1h-1M10,5h1v1h-1M12,5h1v1h-1M13,5h1v1h-1M14,5h1v1h-1M17,5h1v1h-1M19,5h1v1h-1M22,5h1v1h-1M23,5h1v1h-1M26,5h1v1h-1M32,5h1v1h-1M4,6h1v1h-1M6,6h1v1h-1M7,6h1v1h-1M8,6h1v1h-1M10,6h1v1h-1M12,6h1v1h-1M14,6h1v1h-1M16,6h1v1h-1M18,6h1v1h-1M19,6h1v1h-1M23,6h1v1h-1M24,6h1v1h-1M26,6h1v1h-1M28,6h1v1h-1M29,6h1v1h-1M30,6h1v1h-1M32,6h1v1h-1M4,7h1v1h-1M6,7h1v1h-1M7,7h1v1h-1M8,7h1v1h-1M10,7h1v1h-1M13,7h1v1h-1M15,7h1v1h-1M18,7h1v1h-1M21,7h1v1h-1M23,7h1v1h-1M26,7h1v1h-1M28,7h1v1h-1M29,7h1v1h-1M30,7h1v1h-1M32,7h1v1h-1M4,8h1v1h-1M6,8h1v1h-1M7,8h1v1h-1M8,8h1v1h-1M10,8h1v1h-1M16,8h1v1h-1M17,8h1v1h-1M18,8h1v1h-1M19,8h1v1h-1M20,8h1v1h-1M22,8h1v1h-1M23,8h1v1h-1M24,8h1v1h-1M26,8h1v1h-1M28,8h1v1h-1M29,8h1v1h-1M30,8h1v1h-1M32,8h1v1h-1M4,9h1v1h-1M10,9h1v1h-1M12,9h1v1h-1M13,9h1v1h-1M14,9h1v1h-1M15,9h1v1h-1M16,9h1v1h-1M19,9h1v1h-1M22,9h1v1h-1M26,9h1v1h-1M32,9h1v1h-1M4,10h1v1h-1M5,10h1v1h-1M6,10h1v1h-1M7,10h1v1h-1M8,10h1v1h-1M9,10h1v1h-1M10,10h1v1h-1M12,10h1v1h-1M13,10h1v1h-1M14,10h1v1h-1M15,10h1v1h-1M16,10h1v1h-1M17,10h1v1h-1M18,10h1v1h-1M19,10h1v1h-1M20,10h1v1h-1M21,10h1v1h-1M22,10h1v1h-1M23,10h1v1h-1M24,10h1v1h-1M25,10h1v1h-1M26,10h1v1h-1M27,10h1v1h-1M28,10h1v1h-1M29,10h1v1h-1M30,10h1v1h-1M31,10h1v1h-1M32,10h1v1h-1M12,11h1v1h-1M13,11h1v1h-1M15,11h1v1h-1M16,11h1v1h-1M17,11h1v1h-1M18,11h1v1h-1M19,11h1v1h-1M6,12h1v1h-1M7,12h1v1h-1M8,12h1v1h-1M10,12h1v1h-1M12,12h1v1h-1M20,12h1v1h-1M22,12h1v1h-1M23,12h1v1h-1M24,12h1v1h-1M25,12h1v1h-1M26,12h1v1h-1M27,12h1v1h-1M30,12h1v1h-1M31,12h1v1h-1M32,12h1v1h-1M9,13h1v1h-1M10,13h1v1h-1M11,13h1v1h-1M12,13h1v1h-1M13,13h1v1h-1M14,13h1v1h-1M15,13h1v1h-1M16,13h1v1h-1M18,13h1v1h-1M20,13h1v1h-1M25,13h1v1h-1M26,13h1v1h-1M27,13h1v1h-1M28,13h1v1h-1M29,13h1v1h-1M30,13h1v1h-1M32,13h1v1h-1M4,14h1v1h-1M6,14h1v1h-1M7,14h1v1h-1M9,14h1v1h-1M10,14h1v1h-1M12,14h1v1h-1M13,14h1v1h-1M14,14h1v1h-1M15,14h1v1h-1M16,14h1v1h-1M17,14h1v1h-1M18,14h1v1h-1M19,14h1v1h-1M20,14h1v1h-1M22,14h1v1h-1M24,14h1v1h-1M25,14h1v1h-1M26,14h1v1h-1M27,14h1v1h-1M4,15h1v1h-1M6,15h1v1h-1M8,15h1v1h-1M9,15h1v1h-1M10,15h1v1h-1M11,15h1v1h-1M12,15h1v1h-1M13,15h1v1h-1M15,15h1v1h-1M16,15h1v1h-1M18,15h1v1h-1M20,15h1v1h-1M21,15h1v1h-1M22,15h1v1h-1M25,15h1v1h-1M26,15h1v1h-1M27,15h1v1h-1M29,15h1v1h-1M31,15h1v1h-1M5,16h1v1h-1M7,16h1v1h-1M9,16h1v1h-1M10,16h1v1h-1M11,16h1v1h-1M12,16h1v1h-1M14,16h1v1h-1M17,16h1v1h-1M24,16h1v1h-1M25,16h1v1h-1M27,16h1v1h-1M30,16h1v1h-1M31,16h1v1h-1M32,16h1v1h-1M5,17h1v1h-1M6,17h1v1h-1M8,17h1v1h-1M9,17h1v1h-1M10,17h1v1h-1M12,17h1v1h-1M16,17h1v1h-1M18,17h1v1h-1M20,17h1v1h-1M23,17h1v1h-1M24,17h1v1h-1M25,17h1v1h-1M26,17h1v1h-1M28,17h1v1h-1M29,17h1v1h-1M31,17h1v1h-1M32,17h1v1h-1M4,18h1v1h-1M5,18h1v1h-1M7,18h1v1h-1M9,18h1v1h-1M10,18h1v1h-1M12,18h1v1h-1M13,18h1v1h-1M14,18h1v1h-1M16,18h1v1h-1M19,18h1v1h-1M20,18h1v1h-1M22,18h1v1h-1M24,18h1v1h-1M26,18h1v1h-1M27,18h1v1h-1M4,19h1v1h-1M6,19h1v1h-1M7,19h1v1h-1M8,19h1v1h-1M10,19h1v1h-1M12,19h1v1h-1M13,19h1v1h-1M16,19h1v1h-1M21,19h1v1h-1M22,19h1v1h-1M24,19h1v1h-1M28,19h1v1h-1M29,19h1v1h-1M31,19h1v1h-1M5,20h1v1h-1M6,20h1v1h-1M8,20h1v1h-1M9,20h1v1h-1M10,20h1v1h-1M13,20h1v1h-1M14,20h1v1h-1M16,20h1v1h-1M19,20h1v1h-1M20,20h1v1h-1M25,20h1v1h-1M29,20h1v1h-1M30,20h1v1h-1M31,20h1v1h-1M4,21h1v1h-1M6,21h1v1h-1M7,21h1v1h-1M8,21h1v1h-1M10,21h1v1h-1M12,21h1v1h-1M14,21h1v1h-1M16,21h1v1h-1M17,21h1v1h-1M19,21h1v1h-1M20,21h1v1h-1M24,21h1v1h-1M25,21h1v1h-1M26,21h1v1h-1M27,21h1v1h-1M28,21h1v1h-1M29,21h1v1h-1M31,21h1v1h-1M32,21h1v1h-1M4,22h1v1h-1M7,22h1v1h-1M8,22h1v1h-1M10,22h1v1h-1M13,22h1v1h-1M15,22h1v1h-1M17,22h1v1h-1M19,22h1v1h-1M20,22h1v1h-1M21,22h1v1h-1M23,22h1v1h-1M26,22h1v1h-1M27,22h1v1h-1M29,22h1v1h-1M4,23h1v1h-1M6,23h1v1h-1M9,23h1v1h-1M10,23h1v1h-1M11,23h1v1h-1M13,23h1v1h-1M14,23h1v1h-1M15,23h1v1h-1M16,23h1v1h-1M19,23h1v1h-1M20,23h1v1h-1M21,23h1v1h-1M23,23h1v1h-1M24,23h1v1h-1M26,23h1v1h-1M28,23h1v1h-1M31,23h1v1h-1M4,24h1v1h-1M6,24h1v1h-1M7,24h1v1h-1M9,24h1v1h-1M10,24h1v1h-1M12,24h1v1h-1M14,24h1v1h-1M15,24h1v1h-1M16,24h1v1h-1M17,24h1v1h-1M18,24h1v1h-1M19,24h1v1h-1M20,24h1v1h-1M22,24h1v1h-1M23,24h1v1h-1M24,24h1v1h-1M25,24h1v1h-1M26,24h1v1h-1M27,24h1v1h-1M28,24h1v1h-1M30,24h1v1h-1M10,25h1v1h-1M12,25h1v1h-1M16,25h1v1h-1M18,25h1v1h-1M20,25h1v1h-1M21,25h1v1h-1M22,25h1v1h-1M24,25h1v1h-1M28,25h1v1h-1M29,25h1v1h-1M32,25h1v1h-1M4,26h1v1h-1M5,26h1v1h-1M6,26h1v1h-1M7,26h1v1h-1M8,26h1v1h-1M9,26h1v1h-1M10,26h1v1h-1M14,26h1v1h-1M16,26h1v1h-1M17,26h1v1h-1M18,26h1v1h-1M19,26h1v1h-1M21,26h1v1h-1M22,26h1v1h-1M23,26h1v1h-1M24,26h1v1h-1M26,26h1v1h-1M28,26h1v1h-1M4,27h1v1h-1M10,27h1v1h-1M13,27h1v1h-1M14,27h1v1h-1M15,27h1v1h-1M16,27h1v1h-1M17,27h1v1h-1M19,27h1v1h-1M20,27h1v1h-1M22,27h1v1h-1M23,27h1v1h-1M24,27h1v1h-1M28,27h1v1h-1M29,27h1v1h-1M4,28h1v1h-1M6,28h1v1h-1M7,28h1v1h-1M8,28h1v1h-1M10,28h1v1h-1M12,28h1v1h-1M13,28h1v1h-1M16,28h1v1h-1M20,28h1v1h-1M21,28h1v1h-1M22,28h1v1h-1M24,28h1v1h-1M25,28h1v1h-1M26,28h1v1h-1M27,28h1v1h-1M28,28h1v1h-1M29,28h1v1h-1M30,28h1v1h-1M32,28h1v1h-1M4,29h1v1h-1M6,29h1v1h-1M7,29h1v1h-1M8,29h1v1h-1M10,29h1v1h-1M12,29h1v1h-1M13,29h1v1h-1M15,29h1v1h-1M16,29h1v1h-1M17,29h1v1h-1M18,29h1v1h-1M22,29h1v1h-1M23,29h1v1h-1M24,29h1v1h-1M25,29h1v1h-1M27,29h1v1h-1M29,29h1v1h-1M30,29h1v1h-1M4,30h1v1h-1M6,30h1v1h-1M7,30h1v1h-1M8,30h1v1h-1M10,30h1v1h-1M12,30h1v1h-1M13,30h1v1h-1M14,30h1v1h-1M16,30h1v1h-1M18,30h1v1h-1M20,30h1v1h-1M21,30h1v1h-1M22,30h1v1h-1M23,30h1v1h-1M24,30h1v1h-1M25,30h1v1h-1M26,30h1v1h-1M27,30h1v1h-1M28,30h1v1h-1M30,30h1v1h-1M31,30h1v1h-1M4,31h1v1h-1M10,31h1v1h-1M13,31h1v1h-1M18,31h1v1h-1M19,31h1v1h-1M20,31h1v1h-1M21,31h1v1h-1M26,31h1v1h-1M28,31h1v1h-1M29,31h1v1h-1M31,31h1v1h-1M4,32h1v1h-1M5,32h1v1h-1M6,32h1v1h-1M7,32h1v1h-1M8,32h1v1h-1M9,32h1v1h-1M10,32h1v1h-1M14,32h1v1h-1M15,32h1v1h-1M16,32h1v1h-1M17,32h1v1h-1M18,32h1v1h-1M19,32h1v1h-1M22,32h1v1h-1M26,32h1v1h-1M28,32h1v1h-1M30,32h1v1h-1&#39; /&gt;</span>
 <span class="doccomment">//! &lt;/svg&gt;</span>
 
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::module::Matrix</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="ident">Debug</span>, <span class="ident">Formatter</span>};
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">encode</span>, <span class="ident">helpers</span>, <span class="ident">Version</span>, <span class="ident">ECL</span>};
@@ -329,85 +331,85 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">QRCode</span> {
     <span class="doccomment">/// QRCode Version n°01, being 21x21</span>
-    <span class="ident">V01</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">21</span>]; <span class="number">21</span>]<span class="op">&gt;</span>),
+    <span class="ident">V01</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">21</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°02, being 25x25</span>
-    <span class="ident">V02</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">25</span>]; <span class="number">25</span>]<span class="op">&gt;</span>),
+    <span class="ident">V02</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">25</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°03, being 29x29</span>
-    <span class="ident">V03</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">29</span>]; <span class="number">29</span>]<span class="op">&gt;</span>),
+    <span class="ident">V03</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">29</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°04, being 33x33</span>
-    <span class="ident">V04</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">33</span>]; <span class="number">33</span>]<span class="op">&gt;</span>),
+    <span class="ident">V04</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">33</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°05, being 37x37</span>
-    <span class="ident">V05</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">37</span>]; <span class="number">37</span>]<span class="op">&gt;</span>),
+    <span class="ident">V05</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">37</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°06, being 41x41</span>
-    <span class="ident">V06</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">41</span>]; <span class="number">41</span>]<span class="op">&gt;</span>),
+    <span class="ident">V06</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">41</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°07, being 45x45</span>
-    <span class="ident">V07</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">45</span>]; <span class="number">45</span>]<span class="op">&gt;</span>),
+    <span class="ident">V07</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">45</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°08, being 49x49</span>
-    <span class="ident">V08</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">49</span>]; <span class="number">49</span>]<span class="op">&gt;</span>),
+    <span class="ident">V08</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">49</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°09, being 53x53</span>
-    <span class="ident">V09</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">53</span>]; <span class="number">53</span>]<span class="op">&gt;</span>),
+    <span class="ident">V09</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">53</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°10, being 57x57</span>
-    <span class="ident">V10</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">57</span>]; <span class="number">57</span>]<span class="op">&gt;</span>),
+    <span class="ident">V10</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">57</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°11, being 61x61</span>
-    <span class="ident">V11</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">61</span>]; <span class="number">61</span>]<span class="op">&gt;</span>),
+    <span class="ident">V11</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">61</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°12, being 65x65</span>
-    <span class="ident">V12</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">65</span>]; <span class="number">65</span>]<span class="op">&gt;</span>),
+    <span class="ident">V12</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">65</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°13, being 69x69</span>
-    <span class="ident">V13</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">69</span>]; <span class="number">69</span>]<span class="op">&gt;</span>),
+    <span class="ident">V13</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">69</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°14, being 73x73</span>
-    <span class="ident">V14</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">73</span>]; <span class="number">73</span>]<span class="op">&gt;</span>),
+    <span class="ident">V14</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">73</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°15, being 77x77</span>
-    <span class="ident">V15</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">77</span>]; <span class="number">77</span>]<span class="op">&gt;</span>),
+    <span class="ident">V15</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">77</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°16, being 81x81</span>
-    <span class="ident">V16</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">81</span>]; <span class="number">81</span>]<span class="op">&gt;</span>),
+    <span class="ident">V16</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">81</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°17, being 85x85</span>
-    <span class="ident">V17</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">85</span>]; <span class="number">85</span>]<span class="op">&gt;</span>),
+    <span class="ident">V17</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">85</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°18, being 89x89</span>
-    <span class="ident">V18</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">89</span>]; <span class="number">89</span>]<span class="op">&gt;</span>),
+    <span class="ident">V18</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">89</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°19, being 93x93</span>
-    <span class="ident">V19</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">93</span>]; <span class="number">93</span>]<span class="op">&gt;</span>),
+    <span class="ident">V19</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">93</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°20, being 97x97</span>
-    <span class="ident">V20</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">97</span>]; <span class="number">97</span>]<span class="op">&gt;</span>),
+    <span class="ident">V20</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">97</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°21, being 101x101</span>
-    <span class="ident">V21</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">101</span>]; <span class="number">101</span>]<span class="op">&gt;</span>),
+    <span class="ident">V21</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">101</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°22, being 105x105</span>
-    <span class="ident">V22</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">105</span>]; <span class="number">105</span>]<span class="op">&gt;</span>),
+    <span class="ident">V22</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">105</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°23, being 109x109</span>
-    <span class="ident">V23</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">109</span>]; <span class="number">109</span>]<span class="op">&gt;</span>),
+    <span class="ident">V23</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">109</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°24, being 113x113</span>
-    <span class="ident">V24</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">113</span>]; <span class="number">113</span>]<span class="op">&gt;</span>),
+    <span class="ident">V24</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">113</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°25, being 117x117</span>
-    <span class="ident">V25</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">117</span>]; <span class="number">117</span>]<span class="op">&gt;</span>),
+    <span class="ident">V25</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">117</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°26, being 121x121</span>
-    <span class="ident">V26</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">121</span>]; <span class="number">121</span>]<span class="op">&gt;</span>),
+    <span class="ident">V26</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">121</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°27, being 125x125</span>
-    <span class="ident">V27</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">125</span>]; <span class="number">125</span>]<span class="op">&gt;</span>),
+    <span class="ident">V27</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">125</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°28, being 129x129</span>
-    <span class="ident">V28</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">129</span>]; <span class="number">129</span>]<span class="op">&gt;</span>),
+    <span class="ident">V28</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">129</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°29, being 133x133</span>
-    <span class="ident">V29</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">133</span>]; <span class="number">133</span>]<span class="op">&gt;</span>),
+    <span class="ident">V29</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">133</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°30, being 137x137</span>
-    <span class="ident">V30</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">137</span>]; <span class="number">137</span>]<span class="op">&gt;</span>),
+    <span class="ident">V30</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">137</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°31, being 141x141</span>
-    <span class="ident">V31</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">141</span>]; <span class="number">141</span>]<span class="op">&gt;</span>),
+    <span class="ident">V31</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">141</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°32, being 145x145</span>
-    <span class="ident">V32</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">145</span>]; <span class="number">145</span>]<span class="op">&gt;</span>),
+    <span class="ident">V32</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">145</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°33, being 149x149</span>
-    <span class="ident">V33</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">149</span>]; <span class="number">149</span>]<span class="op">&gt;</span>),
+    <span class="ident">V33</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">149</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°34, being 153x153</span>
-    <span class="ident">V34</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">153</span>]; <span class="number">153</span>]<span class="op">&gt;</span>),
+    <span class="ident">V34</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">153</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°35, being 157x157</span>
-    <span class="ident">V35</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">157</span>]; <span class="number">157</span>]<span class="op">&gt;</span>),
+    <span class="ident">V35</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">157</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°36, being 161x161</span>
-    <span class="ident">V36</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">161</span>]; <span class="number">161</span>]<span class="op">&gt;</span>),
+    <span class="ident">V36</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">161</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°37, being 165x165</span>
-    <span class="ident">V37</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">165</span>]; <span class="number">165</span>]<span class="op">&gt;</span>),
+    <span class="ident">V37</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">165</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°38, being 169x169</span>
-    <span class="ident">V38</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">169</span>]; <span class="number">169</span>]<span class="op">&gt;</span>),
+    <span class="ident">V38</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">169</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°39, being 173x173</span>
-    <span class="ident">V39</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">173</span>]; <span class="number">173</span>]<span class="op">&gt;</span>),
+    <span class="ident">V39</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">173</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="doccomment">/// QRCode Version n°40, being 177x177</span>
-    <span class="ident">V40</span>(<span class="ident">Box</span><span class="op">&lt;</span>[[<span class="ident">bool</span>; <span class="number">177</span>]; <span class="number">177</span>]<span class="op">&gt;</span>),
+    <span class="ident">V40</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="number">177</span><span class="op">&gt;</span><span class="op">&gt;</span>),
 }
 
 <span class="doccomment">/// Contains different error when QRCode could not be created</span>
@@ -506,7 +508,7 @@
         };
 
         <span class="attribute">#[<span class="ident">rustfmt::skip</span>]</span>
-            <span class="kw">let</span> <span class="ident">out</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">version</span> {
+        <span class="kw">let</span> <span class="ident">out</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">version</span> {
             <span class="ident">Version::V01</span> =&gt; <span class="ident">V01</span>(<span class="ident">Box::new</span>(<span class="ident">create_matrix</span>(<span class="ident">input</span>, <span class="ident">level</span>, <span class="ident">mode</span>, <span class="ident">version</span>, <span class="ident">mask_nb</span>))),
             <span class="ident">Version::V02</span> =&gt; <span class="ident">V02</span>(<span class="ident">Box::new</span>(<span class="ident">create_matrix</span>(<span class="ident">input</span>, <span class="ident">level</span>, <span class="ident">mode</span>, <span class="ident">version</span>, <span class="ident">mask_nb</span>))),
             <span class="ident">Version::V03</span> =&gt; <span class="ident">V03</span>(<span class="ident">Box::new</span>(<span class="ident">create_matrix</span>(<span class="ident">input</span>, <span class="ident">level</span>, <span class="ident">mode</span>, <span class="ident">version</span>, <span class="ident">mask_nb</span>))),
@@ -600,5 +602,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fast_qr" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fast_qr" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.1 (e092d0b6b 2022-07-16)" ></div>
 </body></html>

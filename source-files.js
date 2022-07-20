@@ -1,3 +1,3 @@
-var N = null;var sourcesIndex = {};
-sourcesIndex["fast_qr"] = {"name":"","dirs":[{"name":"bitstring","files":["mod.rs"]},{"name":"convert","files":["mod.rs","svg.rs"]},{"name":"datamasking","files":["mod.rs"]},{"name":"encode","files":["mod.rs"]},{"name":"hardcode","files":["mod.rs"]},{"name":"polynomials","files":["mod.rs"]},{"name":"score","files":["mod.rs"]},{"name":"version","files":["mod.rs"]}],"files":["default.rs","ecl.rs","helpers.rs","lib.rs","placement.rs","qr.rs"]};
+var sourcesIndex = {};
+sourcesIndex["fast_qr"] = {"name":"","dirs":[{"name":"convert","files":["mod.rs","svg.rs"]}],"files":["bitstring.rs","datamasking.rs","default.rs","ecl.rs","encode.rs","hardcode.rs","helpers.rs","lib.rs","module.rs","placement.rs","polynomials.rs","qr.rs","score.rs","version.rs"]};
 createSourceSidebar();
