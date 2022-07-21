@@ -302,6 +302,13 @@
 <span id="297">297</span>
 <span id="298">298</span>
 <span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Wrappers to create QRCode</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! # Example</span>
@@ -481,6 +488,54 @@
     }
 }
 
+<span class="macro">macro_rules!</span> <span class="ident">match_matrix</span> {
+    <span class="comment">// Takes a matrix and a function that takes a matrix</span>
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">matrix</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>:<span class="ident">expr</span>) =&gt; {
+        <span class="kw">match</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">matrix</span> {
+            <span class="ident">QRCode::V01</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V02</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V03</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V04</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V05</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V06</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V07</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V08</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V09</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V10</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V11</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V12</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V13</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V14</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V15</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V16</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V17</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V18</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V19</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V20</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V21</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V22</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V23</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V24</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V25</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V26</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V27</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V28</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V29</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V30</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V31</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V32</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V33</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V34</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V35</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V36</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V37</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V38</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V39</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+            <span class="ident">QRCode::V40</span>(<span class="ident">matrix</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">func</span>(<span class="ident">matrix</span>),
+        }
+    };
+}
+
 <span class="kw">impl</span> <span class="ident">QRCode</span> {
     <span class="doccomment">/// Creates a new QRCode from a ECL / version</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
@@ -491,6 +546,7 @@
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">QRCodeError</span><span class="op">&gt;</span> {
         <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::placement::create_matrix</span>;
         <span class="kw">use</span> <span class="ident">QRCode</span>::<span class="kw-2">*</span>;
+
         <span class="kw">let</span> <span class="ident">mode</span> <span class="op">=</span> <span class="ident">encode::best_encoding</span>(<span class="ident">input</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">level</span> <span class="op">=</span> <span class="ident">ECL::Q</span>;
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">ecl</span> {
@@ -554,51 +610,9 @@
         <span class="prelude-val">Ok</span>(<span class="ident">out</span>)
     }
 
-    <span class="doccomment">/// Prints the matrix to the terminal</span>
+    <span class="doccomment">/// Prints the QRCode to the terminal</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">use</span> <span class="ident">QRCode</span>::<span class="kw-2">*</span>;
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">V01</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V02</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V03</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V04</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V05</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V06</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V07</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V08</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V09</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V10</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V11</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V12</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V13</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V14</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V15</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V16</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V17</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V18</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V19</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V20</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V21</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V22</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V23</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V24</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V25</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V26</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V27</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V28</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V29</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V30</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V31</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V32</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V33</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V34</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V35</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V36</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V37</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V38</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V39</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-            <span class="ident">V40</span>(<span class="ident">matrix</span>) =&gt; <span class="ident">helpers::print_matrix_with_margin</span>(<span class="ident">matrix</span>),
-        }
+        <span class="macro">match_matrix!</span>(<span class="self">self</span>, <span class="ident">helpers::print_matrix_with_margin</span>);
     }
 }
 </code></pre></div>
