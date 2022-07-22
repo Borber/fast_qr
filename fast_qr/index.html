@@ -27,7 +27,7 @@
 
 <span class="kw">let</span> <span class="ident">svg</span> <span class="op">=</span> <span class="ident">SvgBuilder::new</span>()
     .<span class="ident">shape</span>(<span class="ident">Shape::RoundedSquare</span>)
-    .<span class="ident">build_qr</span>(<span class="ident">qrcode</span>.<span class="ident">unwrap</span>());
+    .<span class="ident">to_str</span>(<span class="kw-2">&amp;</span><span class="ident">qrcode</span>.<span class="ident">unwrap</span>());
 
 <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">svg</span>);</code></pre></div>
 </div></details><h2 id="reexports" class="small-section-header"><a href="#reexports">Re-exports</a></h2>
