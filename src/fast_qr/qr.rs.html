@@ -423,9 +423,9 @@
 
 <span class="doccomment">/// Contains different error when QRCode could not be created</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">QRCodeError</span> {
-    <span class="doccomment">/// If data if too big to be encoded (refer to [character-capacities](https://www.thonky.com/qr-code-tutorial/character-capacities))</span>
+    <span class="doccomment">/// If data if too big to be encoded (referring to Table 7-11 of the spec or [an online table](https://fast-qr.com/diy/tables/ecl))</span>
     <span class="ident">EncodedData</span>,
-    <span class="doccomment">/// Specified version too low to contain data</span>
+    <span class="doccomment">/// Specified version too small to contain data</span>
     <span class="ident">SpecifiedVersion</span>,
 }
 

@@ -64,8 +64,6 @@
 <span id="59">59</span>
 <span id="60">60</span>
 <span id="61">61</span>
-<span id="62">62</span>
-<span id="63">63</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Matrix helpers functions</span>
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
@@ -116,15 +114,13 @@
 <span class="doccomment">/**
  * Convert a vector of u8 to it&#39;s representation in bits
  *
- * If bits are required by the QR code (see [Missing bits](https://www.thonky.com/qr-code-tutorial/structure-final-message#list-of-versions-and-required-remainder-bits))
- * It adds them.
+ * If bits are required by the QR code (referring to 8.6 of the spec), they are added to the end of the vector.
  *
  * Example: { 101 } =&gt; &quot;01100101&quot;
  */</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">binary_to_binarystring_version</span>(
     <span class="ident">binary</span>: [<span class="ident">u8</span>; <span class="number">5430</span>],
     <span class="ident">version</span>: <span class="ident">Version</span>,
-    <span class="ident">_quality</span>: <span class="ident">ECL</span>,
 ) -&gt; <span class="ident">BitString</span><span class="op">&lt;</span><span class="number">5430</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">max</span> <span class="op">=</span> <span class="ident">version</span>.<span class="ident">max_bytes</span>() <span class="op">*</span> <span class="number">8</span>;
     <span class="ident">BitString::from</span>(<span class="ident">binary</span>, <span class="ident">max</span> <span class="op">+</span> <span class="ident">version</span>.<span class="ident">missing_bits</span>())

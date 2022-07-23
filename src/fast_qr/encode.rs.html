@@ -282,7 +282,7 @@
     <span class="ident">try_encode_numeric</span>(<span class="ident">input</span>, <span class="number">0</span>)
 }
 
-<span class="doccomment">/// Encodes [numeric](https://www.thonky.com/qr-code-tutorial/numeric-mode-encoding) string</span>
+<span class="doccomment">/// Encodes numeric strings (i.e. &quot;123456789&quot;), referring to 8.4.2 of the spec.</span>
 <span class="kw">fn</span> <span class="ident">encode_numeric</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">cci_bits</span>: <span class="ident">usize</span>) -&gt; <span class="ident">BitString</span><span class="op">&lt;</span><span class="number">2956</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">encode_number</span>(<span class="ident">bs</span>: <span class="kw-2">&amp;mut</span> <span class="ident">BitString</span><span class="op">&lt;</span><span class="number">2956</span><span class="op">&gt;</span>, <span class="ident">number</span>: <span class="ident">usize</span>) {
         <span class="kw">match</span> <span class="ident">number</span> {
@@ -326,7 +326,7 @@
     <span class="ident">bs</span>
 }
 
-<span class="doccomment">/// Encodes [alphanumeric](https://www.thonky.com/qr-code-tutorial/alphanumeric-mode-encoding) string</span>
+<span class="doccomment">/// Encodes alphanumeric strings (i.e. &quot;FAST-QR123&quot;), referring to 8.4.3 of the spec.</span>
 <span class="kw">fn</span> <span class="ident">encode_alphanumeric</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">cci_bits</span>: <span class="ident">usize</span>) -&gt; <span class="ident">BitString</span><span class="op">&lt;</span><span class="number">2956</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bs</span> <span class="op">=</span> <span class="ident">BitString::new</span>();
 
@@ -342,7 +342,7 @@
     <span class="ident">bs</span>
 }
 
-<span class="doccomment">/// Encodes [any](https://www.thonky.com/qr-code-tutorial/byte-mode-encoding) string</span>
+<span class="doccomment">/// Encodes any string (i.e. &quot;https://fast-qr.com/🚀&quot;), referring to 8.4.4 of the spec.</span>
 <span class="kw">fn</span> <span class="ident">encode_byte</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">cci_bits</span>: <span class="ident">usize</span>) -&gt; <span class="ident">BitString</span><span class="op">&lt;</span><span class="number">2956</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bs</span> <span class="op">=</span> <span class="ident">BitString::new</span>();
 
@@ -353,8 +353,7 @@
     <span class="ident">bs</span>
 }
 
-<span class="doccomment">/// Adds needed [terminator padding](https://www.thonky.com/qr-code-tutorial/data-encoding#add-a-terminator-of-0s-if-necessary)</span>
-<span class="doccomment">/// as mentioned here</span>
+<span class="doccomment">/// Adds needed terminator padding, terminating the data `BitString`, referring to 8.4.8 of the spec.</span>
 <span class="kw">fn</span> <span class="ident">add_terminator</span>(<span class="ident">bs</span>: <span class="kw-2">&amp;mut</span> <span class="ident">BitString</span><span class="op">&lt;</span><span class="number">2956</span><span class="op">&gt;</span>, <span class="ident">data_bits</span>: <span class="ident">usize</span>) {
     <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">data_bits</span> <span class="op">-</span> <span class="ident">bs</span>.<span class="ident">len</span>();
     <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">std::cmp::min</span>(<span class="ident">len</span>, <span class="number">4</span>);
@@ -362,8 +361,7 @@
     <span class="ident">bs</span>.<span class="ident">push_bits</span>(<span class="number">0</span>, <span class="ident">len</span>)
 }
 
-<span class="doccomment">/// Adds the [padding](https://www.thonky.com/qr-code-tutorial/data-encoding#add-more-0s-to-make-the-length-a-multiple-of-8)</span>
-<span class="doccomment">/// to make the length a multiple of 8</span>
+<span class="doccomment">/// Adds the padding to make the length of the `BitString` a multiple of 8, referring to 8.4.9 of the spec.</span>
 <span class="kw">fn</span> <span class="ident">pad_to_8</span>(<span class="ident">bs</span>: <span class="kw-2">&amp;mut</span> <span class="ident">BitString</span><span class="op">&lt;</span><span class="number">2956</span><span class="op">&gt;</span>) {
     <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="number">8</span> <span class="op">-</span> <span class="ident">bs</span>.<span class="ident">len</span>() <span class="op">%</span> <span class="number">8</span>) <span class="op">%</span> <span class="number">8</span>;
     <span class="ident">bs</span>.<span class="ident">push_bits</span>(<span class="number">0</span>, <span class="ident">len</span>)
@@ -375,8 +373,9 @@
     (<span class="ident">c</span> <span class="op">-</span> <span class="string">b&#39;0&#39;</span>) <span class="kw">as</span> <span class="ident">usize</span>
 }
 
-<span class="doccomment">/// Converts ascii alnum to it&#39;s value in usize following</span>
-<span class="doccomment">/// [specifications](https://www.thonky.com/qr-code-tutorial/alphanumeric-table)</span>
+<span class="doccomment">/// Converts ascii alnum to it&#39;s numeric value, characters included in AlphaNumeric are: \</span>
+<span class="doccomment">/// 0-9, A-Z, $%*./:+-?.= [space] \</span>
+<span class="doccomment">/// referring to 7.1 of the spec.</span>
 <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">ascii_to_alphanumeric</span>(<span class="ident">c</span>: <span class="ident">u8</span>) -&gt; <span class="ident">usize</span> {
     <span class="kw">match</span> <span class="ident">c</span> {
         <span class="string">b&#39;0&#39;</span> =&gt; <span class="number">0</span>,
@@ -428,7 +427,8 @@
     }
 }
 
-<span class="doccomment">/// Checks if `c` is [alnum](https://www.thonky.com/qr-code-tutorial/alphanumeric-table)</span>
+<span class="doccomment">/// Checks if character c is alphanumeric: 0-9, A-Z, $%*./:+-?.= [space] \</span>
+<span class="doccomment">/// referring to 7.1 of the spec.</span>
 <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_qr_alphanumeric</span>(<span class="ident">c</span>: <span class="ident">u8</span>) -&gt; <span class="ident">bool</span> {
     <span class="macro">matches!</span>(<span class="ident">c</span>,
         <span class="string">b&#39;A&#39;</span>..<span class="op">=</span><span class="string">b&#39;Z&#39;</span>

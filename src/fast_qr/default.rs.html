@@ -263,7 +263,6 @@
 <span id="258">258</span>
 <span id="259">259</span>
 <span id="260">260</span>
-<span id="261">261</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Creates the default empty QRCodes (no data)</span>
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
@@ -378,7 +377,6 @@
 
 <span class="doccomment">/// Adds the forever present pixel</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_matrix_dark_module</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) {
-    <span class="comment">// https://www.thonky.com/qr-code-tutorial/format-version-information</span>
     <span class="comment">// Dark module</span>
     <span class="ident">mat</span>[<span class="ident">N</span> <span class="op">-</span> <span class="number">8</span>][<span class="number">8</span>] <span class="op">=</span> <span class="ident">Module::dark</span>(<span class="ident">Module::DARK</span>);
 }
