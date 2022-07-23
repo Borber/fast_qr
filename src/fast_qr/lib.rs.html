@@ -114,6 +114,7 @@
 <span id="109">109</span>
 <span id="110">110</span>
 <span id="111">111</span>
+<span id="112">112</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
 <span class="doccomment">//! # Example</span>
 <span class="doccomment">//! ```rust</span>
@@ -148,6 +149,7 @@
 <span class="doccomment">//! println!(&quot;{}&quot;, svg);</span>
 <span class="doccomment">//! ```</span>
 
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::datamasking::Mask</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ecl::ECL</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::qr</span>::{<span class="ident">QRBuilder</span>, <span class="ident">QRCode</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::version::Version</span>;
@@ -192,7 +194,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QROptions</span> {
     <span class="ident">ecl</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ECL</span><span class="op">&gt;</span>,
     <span class="ident">version</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Version</span><span class="op">&gt;</span>,
-    <span class="ident">mask_nb</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
+    <span class="ident">mask</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Mask</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
@@ -215,7 +217,7 @@
         <span class="ident">content</span>.<span class="ident">as_bytes</span>(),
         <span class="ident">qr_options</span>.<span class="ident">ecl</span>,
         <span class="ident">qr_options</span>.<span class="ident">version</span>,
-        <span class="ident">qr_options</span>.<span class="ident">mask_nb</span>,
+        <span class="ident">qr_options</span>.<span class="ident">mask</span>,
     );
     <span class="kw">if</span> <span class="ident">qrcode</span>.<span class="ident">is_err</span>() {
         <span class="kw">return</span> <span class="ident">Vec::new</span>();

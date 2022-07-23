@@ -264,13 +264,11 @@
 <span id="259">259</span>
 <span id="260">260</span>
 <span id="261">261</span>
-<span id="262">262</span>
-<span id="263">263</span>
-<span id="264">264</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Creates the default empty QRCodes (no data)</span>
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
 
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::datamasking::Mask</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::module</span>::{<span class="ident">Matrix</span>, <span class="ident">Module</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::version::Version</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">hardcode</span>, <span class="ident">ECL</span>};
@@ -450,17 +448,13 @@
 }
 
 <span class="doccomment">/// Adds the format information if needed</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_matrix_format_info</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(
-    <span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>,
-    <span class="ident">quality</span>: <span class="ident">ECL</span>,
-    <span class="ident">mask_nb</span>: <span class="ident">usize</span>,
-) {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_matrix_format_info</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>, <span class="ident">quality</span>: <span class="ident">ECL</span>, <span class="ident">mask</span>: <span class="ident">Mask</span>) {
     <span class="kw">let</span> <span class="ident">version</span> <span class="op">=</span> <span class="ident">Version::from_n</span>::<span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>();
     <span class="kw">if</span> (<span class="ident">version</span> <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">&lt;</span> (<span class="ident">Version::V01</span> <span class="kw">as</span> <span class="ident">usize</span>) {
         <span class="kw">return</span>;
     }
 
-    <span class="kw">let</span> <span class="ident">format_info</span> <span class="op">=</span> <span class="ident">hardcode::ecm_to_format_information</span>(<span class="ident">quality</span>, <span class="ident">mask_nb</span>);
+    <span class="kw">let</span> <span class="ident">format_info</span> <span class="op">=</span> <span class="ident">hardcode::ecm_to_format_information</span>(<span class="ident">quality</span>, <span class="ident">mask</span>);
 
     <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="op">=</span><span class="number">5</span>).<span class="ident">rev</span>() {
         <span class="kw">let</span> <span class="ident">shift</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">i</span> <span class="op">+</span> <span class="number">9</span>);

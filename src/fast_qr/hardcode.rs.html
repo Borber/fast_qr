@@ -515,12 +515,14 @@
 <span id="510">510</span>
 <span id="511">511</span>
 <span id="512">512</span>
+<span id="513">513</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Contains all different levels of quality.</span>
 <span class="doccomment">//! And allows to find easily max bits per version/quality pair</span>
 
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
 
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::datamasking::Mask</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ecl::ECL</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::encode::Mode</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::version::Version</span>;
@@ -721,7 +723,7 @@
 }
 
 <span class="doccomment">/// Fetches the right array to retrieve the **format information**</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">ecm_to_format_information</span>(<span class="ident">quality</span>: <span class="ident">ECL</span>, <span class="ident">mask_nb</span>: <span class="ident">usize</span>) -&gt; <span class="ident">u16</span> {
+<span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">ecm_to_format_information</span>(<span class="ident">quality</span>: <span class="ident">ECL</span>, <span class="ident">mask</span>: <span class="ident">Mask</span>) -&gt; <span class="ident">u16</span> {
     <span class="kw">const</span> <span class="ident">L</span>: [<span class="ident">u16</span>; <span class="number">8</span>] <span class="op">=</span> [
         <span class="number">0b111011111000100</span>,
         <span class="number">0b111001011110011</span>,
@@ -767,10 +769,10 @@
     ];
 
     <span class="kw">match</span> <span class="ident">quality</span> {
-        <span class="ident">ECL::L</span> =&gt; <span class="ident">L</span>[<span class="ident">mask_nb</span>],
-        <span class="ident">ECL::M</span> =&gt; <span class="ident">M</span>[<span class="ident">mask_nb</span>],
-        <span class="ident">ECL::Q</span> =&gt; <span class="ident">Q</span>[<span class="ident">mask_nb</span>],
-        <span class="ident">ECL::H</span> =&gt; <span class="ident">H</span>[<span class="ident">mask_nb</span>],
+        <span class="ident">ECL::L</span> =&gt; <span class="ident">L</span>[<span class="ident">mask</span> <span class="kw">as</span> <span class="ident">usize</span>],
+        <span class="ident">ECL::M</span> =&gt; <span class="ident">M</span>[<span class="ident">mask</span> <span class="kw">as</span> <span class="ident">usize</span>],
+        <span class="ident">ECL::Q</span> =&gt; <span class="ident">Q</span>[<span class="ident">mask</span> <span class="kw">as</span> <span class="ident">usize</span>],
+        <span class="ident">ECL::H</span> =&gt; <span class="ident">H</span>[<span class="ident">mask</span> <span class="kw">as</span> <span class="ident">usize</span>],
     }
 }
 
