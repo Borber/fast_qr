@@ -144,7 +144,7 @@
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bitstring::BitString</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::compact::CompactQR</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::datamasking::Mask</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::encode::Mode</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::module</span>::{<span class="ident">Matrix</span>, <span class="ident">ModuleType</span>};
@@ -171,7 +171,7 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">test_place_on_matrix_data</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(
     <span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>,
-    <span class="ident">structure_as_binarystring</span>: <span class="kw-2">&amp;</span><span class="ident">BitString</span><span class="op">&lt;</span><span class="number">5430</span><span class="op">&gt;</span>,
+    <span class="ident">structure_as_binarystring</span>: <span class="kw-2">&amp;</span><span class="ident">CompactQR</span>,
 ) {
     <span class="ident">place_on_matrix_data</span>(<span class="ident">mat</span>, <span class="ident">structure_as_binarystring</span>);
 }
@@ -179,7 +179,7 @@
 <span class="doccomment">/// Places the data on the matrix</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">place_on_matrix_data</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(
     <span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>,
-    <span class="ident">structure_as_binarystring</span>: <span class="kw-2">&amp;</span><span class="ident">BitString</span><span class="op">&lt;</span><span class="number">5430</span><span class="op">&gt;</span>,
+    <span class="ident">structure_as_binarystring</span>: <span class="kw-2">&amp;</span><span class="ident">CompactQR</span>,
 ) {
     <span class="kw">let</span> <span class="ident">structure_bytes_tmp</span> <span class="op">=</span> <span class="ident">structure_as_binarystring</span>.<span class="ident">get_data</span>();
 
@@ -234,7 +234,7 @@
 
 <span class="doccomment">/// Main function to place everything in the QRCode, returns a valid matrix</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">place_on_matrix</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(
-    <span class="ident">structure_as_binarystring</span>: <span class="kw-2">&amp;</span><span class="ident">BitString</span><span class="op">&lt;</span><span class="number">5430</span><span class="op">&gt;</span>,
+    <span class="ident">structure_as_binarystring</span>: <span class="kw-2">&amp;</span><span class="ident">CompactQR</span>,
     <span class="ident">quality</span>: <span class="ident">ECL</span>,
     <span class="ident">mask</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Mask</span><span class="op">&gt;</span>,
 ) -&gt; <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span> {
