@@ -167,6 +167,14 @@
 <span id="162">162</span>
 <span id="163">163</span>
 <span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Contains the HEIGHT functions that can alter QRCode</span>
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
@@ -199,8 +207,9 @@
 <span class="kw">fn</span> <span class="ident">mask_checkerboard</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) {
     <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
         <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="ident">row</span> <span class="op">&amp;</span> <span class="number">1</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">2</span>) {
-            <span class="kw">if</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>].<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
-                <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>].<span class="ident">toggle</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>];
+            <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
+                <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
         }
     }
@@ -210,8 +219,9 @@
 <span class="kw">fn</span> <span class="ident">mask_horizontal</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) {
     <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">2</span>) {
         <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
-            <span class="kw">if</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>].<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
-                <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>].<span class="ident">toggle</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>];
+            <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
+                <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
         }
     }
@@ -221,8 +231,9 @@
 <span class="kw">fn</span> <span class="ident">mask_vertical</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) {
     <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
         <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">3</span>) {
-            <span class="kw">if</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>].<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
-                <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>].<span class="ident">toggle</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>];
+            <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
+                <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
         }
     }
@@ -233,8 +244,9 @@
     <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
         <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> (<span class="number">3</span> <span class="op">-</span> <span class="ident">row</span> <span class="op">%</span> <span class="number">3</span>) <span class="op">%</span> <span class="number">3</span>;
         <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="ident">start</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">3</span>) {
-            <span class="kw">if</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>].<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
-                <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>].<span class="ident">toggle</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>];
+            <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
+                <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
         }
     }
@@ -246,8 +258,9 @@
         <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> ((<span class="ident">row</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">1</span>) <span class="op">&amp;</span> <span class="number">1</span>) <span class="op">*</span> <span class="number">3</span>; <span class="comment">// ((row / 2) % 2) * 3;</span>
         <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="ident">start</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">6</span>) {
             <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="ident">column</span>..<span class="ident">std::cmp::min</span>(<span class="ident">N</span>, <span class="ident">column</span> <span class="op">+</span> <span class="number">3</span>) {
-                <span class="kw">if</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">i</span>].<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
-                    <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">i</span>].<span class="ident">toggle</span>();
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">i</span>];
+                <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
+                    <span class="ident">module</span>.<span class="ident">toggle</span>();
                 }
             }
         }
@@ -257,13 +270,13 @@
 <span class="kw">fn</span> <span class="ident">mask_5_6</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>, <span class="ident">offset</span>: <span class="kw-2">&amp;</span>[(<span class="ident">usize</span>, <span class="ident">usize</span>)]) {
     <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">6</span>) {
         <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
-            <span class="kw">if</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>].<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
-                <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>].<span class="ident">toggle</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>];
+            <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
+                <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
-            <span class="kw">if</span> <span class="ident">mat</span>[<span class="ident">column</span>][<span class="ident">row</span>].<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span>
-                <span class="op">&amp;&amp;</span> (<span class="ident">row</span> <span class="op">%</span> <span class="number">6</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">column</span> <span class="op">%</span> <span class="number">6</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>)
-            {
-                <span class="ident">mat</span>[<span class="ident">column</span>][<span class="ident">row</span>].<span class="ident">toggle</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">column</span>][<span class="ident">row</span>];
+            <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> <span class="op">&amp;&amp;</span> (<span class="ident">row</span> <span class="op">%</span> <span class="number">6</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">column</span> <span class="op">%</span> <span class="number">6</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>) {
+                <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
         }
     }
@@ -271,11 +284,12 @@
     <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">6</span>) {
         <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">6</span>) {
             <span class="kw">for</span> (<span class="ident">y</span>, <span class="ident">x</span>) <span class="kw">in</span> <span class="ident">offset</span> {
-                <span class="kw">if</span> <span class="ident">row</span> <span class="op">+</span> <span class="ident">y</span> <span class="op">&lt;</span> <span class="ident">N</span>
-                    <span class="op">&amp;&amp;</span> <span class="ident">column</span> <span class="op">+</span> <span class="ident">x</span> <span class="op">&lt;</span> <span class="ident">N</span>
-                    <span class="op">&amp;&amp;</span> <span class="ident">mat</span>[<span class="ident">row</span> <span class="op">+</span> <span class="ident">y</span>][<span class="ident">column</span> <span class="op">+</span> <span class="ident">x</span>].<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span>
-                {
-                    <span class="ident">mat</span>[<span class="ident">row</span> <span class="op">+</span> <span class="ident">y</span>][<span class="ident">column</span> <span class="op">+</span> <span class="ident">x</span>].<span class="ident">toggle</span>();
+                <span class="kw">if</span> <span class="ident">row</span> <span class="op">+</span> <span class="ident">y</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">N</span> <span class="op">|</span><span class="op">|</span> <span class="ident">column</span> <span class="op">+</span> <span class="ident">x</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">N</span> {
+                    <span class="kw">continue</span>;
+                }
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span> <span class="op">+</span> <span class="ident">y</span>][<span class="ident">column</span> <span class="op">+</span> <span class="ident">x</span>];
+                <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
+                    <span class="ident">module</span>.<span class="ident">toggle</span>();
                 }
             }
         }
@@ -303,16 +317,18 @@
 <span class="kw">fn</span> <span class="ident">mask_meadow</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) {
     <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
         <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> <span class="ident">row</span>..<span class="ident">N</span> {
-            <span class="kw">if</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>].<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span>
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>];
+            <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span>
                 <span class="op">&amp;&amp;</span> (((<span class="ident">row</span> <span class="op">+</span> <span class="ident">column</span>) <span class="op">%</span> <span class="number">2</span>) <span class="op">+</span> ((<span class="ident">row</span> <span class="op">*</span> <span class="ident">column</span>) <span class="op">%</span> <span class="number">3</span>)) <span class="op">%</span> <span class="number">2</span> <span class="op">==</span> <span class="number">0</span>
             {
-                <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>].<span class="ident">toggle</span>();
+                <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">column</span>][<span class="ident">row</span>];
             <span class="kw">if</span> <span class="ident">column</span> <span class="op">!</span><span class="op">=</span> <span class="ident">row</span>
-                <span class="op">&amp;&amp;</span> <span class="ident">mat</span>[<span class="ident">column</span>][<span class="ident">row</span>].<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span>
+                <span class="op">&amp;&amp;</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span>
                 <span class="op">&amp;&amp;</span> (((<span class="ident">row</span> <span class="op">+</span> <span class="ident">column</span>) <span class="op">%</span> <span class="number">2</span>) <span class="op">+</span> ((<span class="ident">row</span> <span class="op">*</span> <span class="ident">column</span>) <span class="op">%</span> <span class="number">3</span>)) <span class="op">%</span> <span class="number">2</span> <span class="op">==</span> <span class="number">0</span>
             {
-                <span class="ident">mat</span>[<span class="ident">column</span>][<span class="ident">row</span>].<span class="ident">toggle</span>();
+                <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
         }
     }
