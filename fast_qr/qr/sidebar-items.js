@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["QRCodeError","Contains different error when QRCode could not be created"]],"struct":[["QRBuilder","Builder for `QRCode` struct"],["QRCode","Contains all needed information about the QR code. This is the main struct of the crate."]]});
+initSidebarItems({"enum":[["QRCodeError","Contains different error when QRCode could not be created"]],"struct":[["QRBuilder","Builder for `QRCode` struct"],["QRCode","A QRCode can be created using QRBuilder. Simple API for simple usage. If you need to use QRCode directly, please file an issue on github."]]});

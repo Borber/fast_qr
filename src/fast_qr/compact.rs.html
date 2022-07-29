@@ -228,10 +228,17 @@
 <span id="223">223</span>
 <span id="224">224</span>
 <span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Struct containing an u8-array of C size to store bitwise boolean values</span>
 
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
+
+<span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="ident">Display</span>, <span class="ident">Formatter</span>};
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Version</span>;
 
@@ -239,7 +246,7 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>))]</span>
 <span class="doccomment">/// Values to keep last X bits of a u8</span>
 <span class="doccomment">/// `KEEP_LAST[i]` equates `(1 &lt;&lt; i) - 1`</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// # Example</span>
 <span class="doccomment">/// ```rust</span>
 <span class="doccomment">/// # pub const KEEP_LAST: [usize; 65] = [</span>
@@ -262,7 +269,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">KEEP_LAST</span>: [<span class="ident">usize</span>; <span class="number">65</span>] <span class="op">=</span> [
     <span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">15</span>, <span class="number">31</span>, <span class="number">63</span>, <span class="number">127</span>, <span class="number">255</span>, <span class="number">511</span>, <span class="number">1023</span>, <span class="number">2047</span>, <span class="number">4095</span>, <span class="number">8191</span>, <span class="number">16383</span>,
     <span class="number">32767</span>, <span class="number">65535</span>, <span class="number">131071</span>, <span class="number">262143</span>, <span class="number">524287</span>, <span class="number">1048575</span>, <span class="number">2097151</span>, <span class="number">4194303</span>, <span class="number">8388607</span>,
-    <span class="number">16777215</span>, <span class="number">33554431</span>, <span class="number">67108863</span>, <span class="number">134217727</span>, <span class="number">268435455</span>, <span class="number">536870911</span>,  <span class="number">1073741823</span>,
+    <span class="number">16777215</span>, <span class="number">33554431</span>, <span class="number">67108863</span>, <span class="number">134217727</span>, <span class="number">268435455</span>, <span class="number">536870911</span>, <span class="number">1073741823</span>,
     <span class="number">2147483647</span>, <span class="number">4294967295</span>, <span class="number">8589934591</span>, <span class="number">17179869183</span>, <span class="number">34359738367</span>, <span class="number">68719476735</span>,
     <span class="number">137438953471</span>, <span class="number">274877906943</span>, <span class="number">549755813887</span>, <span class="number">1099511627775</span>, <span class="number">2199023255551</span>,
     <span class="number">4398046511103</span>, <span class="number">8796093022207</span>, <span class="number">17592186044415</span>, <span class="number">35184372088831</span>,
@@ -281,7 +288,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">KEEP_LAST</span>: [<span class="ident">usize</span>; <span class="number">33</span>] <span class="op">=</span> [
     <span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">15</span>, <span class="number">31</span>, <span class="number">63</span>, <span class="number">127</span>, <span class="number">255</span>, <span class="number">511</span>, <span class="number">1023</span>, <span class="number">2047</span>, <span class="number">4095</span>, <span class="number">8191</span>, <span class="number">16383</span>,
     <span class="number">32767</span>, <span class="number">65535</span>, <span class="number">131071</span>, <span class="number">262143</span>, <span class="number">524287</span>, <span class="number">1048575</span>, <span class="number">2097151</span>, <span class="number">4194303</span>, <span class="number">8388607</span>,
-    <span class="number">16777215</span>, <span class="number">33554431</span>, <span class="number">67108863</span>, <span class="number">134217727</span>, <span class="number">268435455</span>, <span class="number">536870911</span>,  <span class="number">1073741823</span>,
+    <span class="number">16777215</span>, <span class="number">33554431</span>, <span class="number">67108863</span>, <span class="number">134217727</span>, <span class="number">268435455</span>, <span class="number">536870911</span>, <span class="number">1073741823</span>,
     <span class="number">2147483647</span>, <span class="number">4294967295</span>,
 ];
 
@@ -289,6 +296,29 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CompactQR</span> {
     <span class="kw">pub</span> <span class="ident">len</span>: <span class="ident">usize</span>,
     <span class="kw">pub</span> <span class="ident">data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
+}
+
+<span class="doccomment">/// Returns a string visualization of the CompactQR. \</span>
+<span class="doccomment">/// `CompactQR { len: 4, data: [0b1111_1010] }.to_string()` =&gt; `&quot;1010&quot;`</span>
+<span class="kw">impl</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">CompactQR</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">String::with_capacity</span>(<span class="self">self</span>.<span class="ident">len</span>);
+
+        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..(<span class="self">self</span>.<span class="ident">data</span>.<span class="ident">capacity</span>() <span class="op">/</span> <span class="number">8</span>) {
+            <span class="kw">let</span> <span class="ident">nb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>[<span class="ident">i</span>];
+            <span class="kw">for</span> <span class="ident">j</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">8</span> {
+                <span class="kw">if</span> <span class="ident">i</span> <span class="op">*</span> <span class="number">8</span> <span class="op">+</span> <span class="ident">j</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span> {
+                    <span class="kw">return</span> <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw-2">&amp;</span><span class="ident">res</span>);
+                }
+
+                <span class="kw">let</span> <span class="ident">j</span> <span class="op">=</span> <span class="number">7</span> <span class="op">-</span> <span class="ident">j</span>;
+                <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">nb</span> <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">j</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> { <span class="string">&#39;1&#39;</span> } <span class="kw">else</span> { <span class="string">&#39;0&#39;</span> };
+                <span class="ident">res</span>.<span class="ident">push</span>(<span class="ident">c</span>);
+            }
+        }
+
+        <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw-2">&amp;</span><span class="ident">res</span>)
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">CompactQR</span> {
@@ -308,6 +338,8 @@
         <span class="ident">CompactQR</span> { <span class="ident">len</span>: <span class="number">0</span>, <span class="ident">data</span> }
     }
 
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
     <span class="doccomment">/// Instantiates a new CompactQR, with a given length, expects the length to be a multiple of 8.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_len</span>(<span class="ident">data_length</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">length</span> <span class="op">=</span> <span class="ident">data_length</span> <span class="op">/</span> <span class="number">8</span> <span class="op">+</span> (<span class="ident">data_length</span> <span class="op">%</span> <span class="number">8</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>) <span class="kw">as</span> <span class="ident">usize</span>;
@@ -340,28 +372,6 @@
     <span class="doccomment">/// Returns `data`, the array of bits.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">get_data</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>
-    }
-
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
-    <span class="doccomment">/// Returns a string visualization of the CompactQR. \</span>
-    <span class="doccomment">/// `CompactQR { len: 4, data: [0b1111_1010] }.to_string()` =&gt; `&quot;1010&quot;`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">String::with_capacity</span>(<span class="self">self</span>.<span class="ident">len</span>);
-
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..(<span class="self">self</span>.<span class="ident">data</span>.<span class="ident">capacity</span>() <span class="op">/</span> <span class="number">8</span>) {
-            <span class="kw">let</span> <span class="ident">nb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>[<span class="ident">i</span>];
-            <span class="kw">for</span> <span class="ident">j</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">8</span> {
-                <span class="kw">if</span> <span class="ident">i</span> <span class="op">*</span> <span class="number">8</span> <span class="op">+</span> <span class="ident">j</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span> {
-                    <span class="kw">return</span> <span class="ident">res</span>;
-                }
-
-                <span class="kw">let</span> <span class="ident">j</span> <span class="op">=</span> <span class="number">7</span> <span class="op">-</span> <span class="ident">j</span>;
-                <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">nb</span> <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">j</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> { <span class="string">&#39;1&#39;</span> } <span class="kw">else</span> { <span class="string">&#39;0&#39;</span> };
-                <span class="ident">res</span>.<span class="ident">push</span>(<span class="ident">c</span>);
-            }
-        }
-
-        <span class="ident">res</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>

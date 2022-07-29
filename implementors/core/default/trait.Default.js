@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["fast_qr"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.62.1/core/default/trait.Default.html\" title=\"trait core::default::Default\">Default</a> for <a class=\"struct\" href=\"fast_qr/convert/svg/struct.SvgBuilder.html\" title=\"struct fast_qr::convert::svg::SvgBuilder\">SvgBuilder</a>","synthetic":false,"types":["fast_qr::convert::svg::SvgBuilder"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

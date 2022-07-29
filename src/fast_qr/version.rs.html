@@ -807,6 +807,7 @@
 <span id="802">802</span>
 <span id="803">803</span>
 <span id="804">804</span>
+<span id="805">805</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Enum containing all possible QRCode versions</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ecl::ECL</span>;
@@ -1607,6 +1608,7 @@
         <span class="ident">ALIGNMENT_PATTERNS_GRID</span>[<span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> <span class="ident">usize</span>]
     }
 
+    <span class="doccomment">/// Returns the size of a QRCode for said version.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="self">self</span>) -&gt; <span class="ident">usize</span> {
         <span class="self">self</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">*</span> <span class="number">4</span> <span class="op">+</span> <span class="number">21</span>
     }

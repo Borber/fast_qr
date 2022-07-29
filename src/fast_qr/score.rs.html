@@ -210,14 +210,16 @@
 <span id="205">205</span>
 <span id="206">206</span>
 <span id="207">207</span>
+<span id="208">208</span>
 </pre><pre class="rust"><code><span class="doccomment">//! QRCodes need a way to define if they are readable, this is the point to</span>
 <span class="doccomment">//! this scoring system. The lesser, the better</span>
 
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::default::transpose</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::module</span>::{<span class="ident">Module</span>, <span class="ident">ModuleType</span>};
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">QRCode</span>, <span class="ident">Version</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">QRCode</span>};
 
 <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::hardcode</span>;
 
@@ -404,9 +406,9 @@
         .<span class="ident">count</span>();
 
     <span class="kw">let</span> <span class="ident">percent</span> <span class="op">=</span> (<span class="ident">dark_modules</span> <span class="op">*</span> <span class="number">100</span>) <span class="op">/</span> (<span class="ident">n</span> <span class="op">*</span> <span class="ident">n</span>);
-    <span class="kw">let</span> <span class="ident">dark_score</span> <span class="op">=</span> <span class="ident">hardcode::PERCENT_SCORE</span>[<span class="ident">percent</span> <span class="kw">as</span> <span class="ident">usize</span>] <span class="kw">as</span> <span class="ident">u32</span>;
 
-    <span class="ident">dark_score</span>
+
+    <span class="ident">hardcode::PERCENT_SCORE</span>[<span class="ident">percent</span> <span class="kw">as</span> <span class="ident">usize</span>] <span class="kw">as</span> <span class="ident">u32</span>
 }
 
 <span class="doccomment">/// Adds every score together</span>
