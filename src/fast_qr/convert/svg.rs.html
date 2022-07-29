@@ -180,48 +180,8 @@
 <span id="175">175</span>
 <span id="176">176</span>
 <span id="177">177</span>
-<span id="178">178</span>
-<span id="179">179</span>
-<span id="180">180</span>
-<span id="181">181</span>
-<span id="182">182</span>
-<span id="183">183</span>
-<span id="184">184</span>
-<span id="185">185</span>
-<span id="186">186</span>
-<span id="187">187</span>
-<span id="188">188</span>
-<span id="189">189</span>
-<span id="190">190</span>
-<span id="191">191</span>
-<span id="192">192</span>
-<span id="193">193</span>
-<span id="194">194</span>
-<span id="195">195</span>
-<span id="196">196</span>
-<span id="197">197</span>
-<span id="198">198</span>
-<span id="199">199</span>
-<span id="200">200</span>
-<span id="201">201</span>
-<span id="202">202</span>
-<span id="203">203</span>
-<span id="204">204</span>
-<span id="205">205</span>
-<span id="206">206</span>
-<span id="207">207</span>
-<span id="208">208</span>
-<span id="209">209</span>
-<span id="210">210</span>
-<span id="211">211</span>
-<span id="212">212</span>
-<span id="213">213</span>
-<span id="214">214</span>
-<span id="215">215</span>
-<span id="216">216</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Conversion to SVGs</span>
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::module::Matrix</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::QRCode</span>;
 <span class="kw">use</span> <span class="ident">std::fs::File</span>;
 <span class="kw">use</span> <span class="ident">std::io</span>;
@@ -313,20 +273,23 @@
     }
 
     <span class="doccomment">/// Generates resulting svg for a matrix</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build_mat</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mat</span>: <span class="kw-2">&amp;</span><span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) -&gt; <span class="ident">String</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">String::with_capacity</span>(<span class="number">11</span> <span class="op">*</span> <span class="ident">N</span> <span class="op">*</span> <span class="ident">N</span> <span class="op">/</span> <span class="number">2</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">qr</span>: <span class="kw-2">&amp;</span><span class="ident">QRCode</span>) -&gt; <span class="ident">String</span> {
+        <span class="kw">let</span> <span class="ident">n</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">qr</span>.<span class="ident">size</span>;
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">String::with_capacity</span>(<span class="number">11</span> <span class="op">*</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">n</span> <span class="op">/</span> <span class="number">2</span>);
         <span class="ident">out</span>.<span class="ident">push_str</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="macro">format!</span>(
             <span class="string">r#&quot;&lt;svg viewBox=&quot;0 0 {0} {0}&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&quot;#</span>,
-            <span class="self">self</span>.<span class="ident">margin</span> <span class="op">*</span> <span class="number">2</span> <span class="op">+</span> <span class="ident">N</span>
+            <span class="self">self</span>.<span class="ident">margin</span> <span class="op">*</span> <span class="number">2</span> <span class="op">+</span> <span class="ident">n</span>
         ));
 
         <span class="ident">out</span>.<span class="ident">push_str</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="macro">format!</span>(
             <span class="string">r#&quot;&lt;rect width=&quot;{0}px&quot; height=&quot;{0}px&quot; fill=&quot;{1}&quot;/&gt;&lt;path d=&quot;&quot;#</span>,
-            <span class="self">self</span>.<span class="ident">margin</span> <span class="op">*</span> <span class="number">2</span> <span class="op">+</span> <span class="ident">N</span>,
+            <span class="self">self</span>.<span class="ident">margin</span> <span class="op">*</span> <span class="number">2</span> <span class="op">+</span> <span class="ident">n</span>,
             <span class="ident">rgba2hex</span>(<span class="self">self</span>.<span class="ident">background_color</span>)
         ));
 
-        <span class="kw">for</span> (<span class="ident">i</span>, <span class="kw-2">&amp;</span><span class="ident">line</span>) <span class="kw">in</span> <span class="ident">mat</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
+        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">qr</span>.<span class="ident">size</span> {
+            <span class="kw">let</span> <span class="ident">line</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">qr</span>[<span class="ident">i</span>];
             <span class="kw">for</span> (<span class="ident">j</span>, <span class="kw-2">&amp;</span><span class="ident">cell</span>) <span class="kw">in</span> <span class="ident">line</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
                 <span class="kw">if</span> <span class="op">!</span><span class="ident">cell</span>.<span class="ident">value</span>() {
                     <span class="kw">continue</span>;
@@ -380,48 +343,7 @@
 
     <span class="doccomment">/// Return a string containing the svg for a qr code</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">qr</span>: <span class="kw-2">&amp;</span><span class="ident">QRCode</span>) -&gt; <span class="ident">String</span> {
-        <span class="kw">match</span> <span class="ident">qr</span> {
-            <span class="ident">QRCode::V01</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V02</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V03</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V04</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V05</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V06</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V07</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V08</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V09</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V10</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V11</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V12</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V13</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V14</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V15</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V16</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V17</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V18</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V19</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V20</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V21</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V22</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V23</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V24</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V25</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V26</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V27</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V28</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V29</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V30</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V31</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V32</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V33</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V34</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V35</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V36</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V37</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V38</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V39</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-            <span class="ident">QRCode::V40</span>(<span class="ident">mat</span>) =&gt; <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">mat</span>),
-        }
+        <span class="self">self</span>.<span class="ident">build_mat</span>(<span class="kw-2">&amp;</span><span class="ident">qr</span>)
     }
 
     <span class="doccomment">/// Saves the svg for a qr code to a file</span>

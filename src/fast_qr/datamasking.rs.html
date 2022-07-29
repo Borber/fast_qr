@@ -175,11 +175,14 @@
 <span id="170">170</span>
 <span id="171">171</span>
 <span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Contains the HEIGHT functions that can alter QRCode</span>
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::module</span>::{<span class="ident">Matrix</span>, <span class="ident">ModuleType</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::module::ModuleType</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::QRCode</span>;
 
 <span class="doccomment">/// The different mask patterns. The mask pattern should only be applied to</span>
 <span class="doccomment">/// the data and error correction portion of the QR code.</span>
@@ -204,10 +207,10 @@
 }
 
 <span class="doccomment">/// Mask function nb°**0**, `Mask::Checkerboard`.</span>
-<span class="kw">fn</span> <span class="ident">mask_checkerboard</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) {
-    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
-        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="ident">row</span> <span class="op">&amp;</span> <span class="number">1</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">2</span>) {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>];
+<span class="kw">fn</span> <span class="ident">mask_checkerboard</span>(<span class="ident">qr</span>: <span class="kw-2">&amp;mut</span> <span class="ident">QRCode</span>) {
+    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">qr</span>.<span class="ident">size</span> {
+        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="ident">row</span> <span class="op">&amp;</span> <span class="number">1</span>..<span class="ident">qr</span>.<span class="ident">size</span>).<span class="ident">step_by</span>(<span class="number">2</span>) {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">qr</span>[<span class="ident">row</span>][<span class="ident">column</span>];
             <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
                 <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
@@ -216,10 +219,10 @@
 }
 
 <span class="doccomment">/// Mask function nb°**1**, `Mask::HorizontalLines`.</span>
-<span class="kw">fn</span> <span class="ident">mask_horizontal</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) {
-    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">2</span>) {
-        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>];
+<span class="kw">fn</span> <span class="ident">mask_horizontal</span>(<span class="ident">qr</span>: <span class="kw-2">&amp;mut</span> <span class="ident">QRCode</span>) {
+    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">qr</span>.<span class="ident">size</span>).<span class="ident">step_by</span>(<span class="number">2</span>) {
+        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">qr</span>.<span class="ident">size</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">qr</span>[<span class="ident">row</span>][<span class="ident">column</span>];
             <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
                 <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
@@ -228,10 +231,10 @@
 }
 
 <span class="doccomment">/// Mask function nb°**2**, `Mask::VerticalLines`.</span>
-<span class="kw">fn</span> <span class="ident">mask_vertical</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) {
-    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
-        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">3</span>) {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>];
+<span class="kw">fn</span> <span class="ident">mask_vertical</span>(<span class="ident">qr</span>: <span class="kw-2">&amp;mut</span> <span class="ident">QRCode</span>) {
+    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">qr</span>.<span class="ident">size</span> {
+        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">qr</span>.<span class="ident">size</span>).<span class="ident">step_by</span>(<span class="number">3</span>) {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">qr</span>[<span class="ident">row</span>][<span class="ident">column</span>];
             <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
                 <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
@@ -240,11 +243,11 @@
 }
 
 <span class="doccomment">/// Mask function nb°**3**, `Mask::DiagonalLines`.</span>
-<span class="kw">fn</span> <span class="ident">mask_diagonal</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) {
-    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
+<span class="kw">fn</span> <span class="ident">mask_diagonal</span>(<span class="ident">qr</span>: <span class="kw-2">&amp;mut</span> <span class="ident">QRCode</span>) {
+    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">qr</span>.<span class="ident">size</span> {
         <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> (<span class="number">3</span> <span class="op">-</span> <span class="ident">row</span> <span class="op">%</span> <span class="number">3</span>) <span class="op">%</span> <span class="number">3</span>;
-        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="ident">start</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">3</span>) {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>];
+        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="ident">start</span>..<span class="ident">qr</span>.<span class="ident">size</span>).<span class="ident">step_by</span>(<span class="number">3</span>) {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">qr</span>[<span class="ident">row</span>][<span class="ident">column</span>];
             <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
                 <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
@@ -253,12 +256,12 @@
 }
 
 <span class="doccomment">/// Mask function nb°**4**, `Mask::LargeCheckerboard`.</span>
-<span class="kw">fn</span> <span class="ident">mask_large_checkerboard</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) {
-    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
+<span class="kw">fn</span> <span class="ident">mask_large_checkerboard</span>(<span class="ident">qr</span>: <span class="kw-2">&amp;mut</span> <span class="ident">QRCode</span>) {
+    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">qr</span>.<span class="ident">size</span> {
         <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> ((<span class="ident">row</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">1</span>) <span class="op">&amp;</span> <span class="number">1</span>) <span class="op">*</span> <span class="number">3</span>; <span class="comment">// ((row / 2) % 2) * 3;</span>
-        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="ident">start</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">6</span>) {
-            <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="ident">column</span>..<span class="ident">std::cmp::min</span>(<span class="ident">N</span>, <span class="ident">column</span> <span class="op">+</span> <span class="number">3</span>) {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">i</span>];
+        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="ident">start</span>..<span class="ident">qr</span>.<span class="ident">size</span>).<span class="ident">step_by</span>(<span class="number">6</span>) {
+            <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="ident">column</span>..<span class="ident">std::cmp::min</span>(<span class="ident">qr</span>.<span class="ident">size</span>, <span class="ident">column</span> <span class="op">+</span> <span class="number">3</span>) {
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">qr</span>[<span class="ident">row</span>][<span class="ident">i</span>];
                 <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
                     <span class="ident">module</span>.<span class="ident">toggle</span>();
                 }
@@ -267,27 +270,28 @@
     }
 }
 
-<span class="kw">fn</span> <span class="ident">mask_5_6</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>, <span class="ident">offset</span>: <span class="kw-2">&amp;</span>[(<span class="ident">usize</span>, <span class="ident">usize</span>)]) {
-    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">6</span>) {
-        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>];
+<span class="kw">fn</span> <span class="ident">mask_5_6</span>(<span class="ident">qr</span>: <span class="kw-2">&amp;mut</span> <span class="ident">QRCode</span>, <span class="ident">offset</span>: <span class="kw-2">&amp;</span>[(<span class="ident">usize</span>, <span class="ident">usize</span>)]) {
+    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">qr</span>.<span class="ident">size</span>).<span class="ident">step_by</span>(<span class="number">6</span>) {
+        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">qr</span>.<span class="ident">size</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">qr</span>[<span class="ident">row</span>][<span class="ident">column</span>];
             <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
                 <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">column</span>][<span class="ident">row</span>];
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">qr</span>[<span class="ident">column</span>][<span class="ident">row</span>];
             <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> <span class="op">&amp;&amp;</span> (<span class="ident">row</span> <span class="op">%</span> <span class="number">6</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">column</span> <span class="op">%</span> <span class="number">6</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>) {
                 <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
         }
     }
 
-    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">6</span>) {
-        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">N</span>).<span class="ident">step_by</span>(<span class="number">6</span>) {
+    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">qr</span>.<span class="ident">size</span>).<span class="ident">step_by</span>(<span class="number">6</span>) {
+        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">qr</span>.<span class="ident">size</span>).<span class="ident">step_by</span>(<span class="number">6</span>) {
             <span class="kw">for</span> (<span class="ident">y</span>, <span class="ident">x</span>) <span class="kw">in</span> <span class="ident">offset</span> {
-                <span class="kw">if</span> <span class="ident">row</span> <span class="op">+</span> <span class="ident">y</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">N</span> <span class="op">|</span><span class="op">|</span> <span class="ident">column</span> <span class="op">+</span> <span class="ident">x</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">N</span> {
+                <span class="kw">if</span> <span class="ident">row</span> <span class="op">+</span> <span class="ident">y</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">qr</span>.<span class="ident">size</span> <span class="op">|</span><span class="op">|</span> <span class="ident">column</span> <span class="op">+</span> <span class="ident">x</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">qr</span>.<span class="ident">size</span> {
                     <span class="kw">continue</span>;
                 }
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span> <span class="op">+</span> <span class="ident">y</span>][<span class="ident">column</span> <span class="op">+</span> <span class="ident">x</span>];
+
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">qr</span>[<span class="ident">row</span> <span class="op">+</span> <span class="ident">y</span>][<span class="ident">column</span> <span class="op">+</span> <span class="ident">x</span>];
                 <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span> {
                     <span class="ident">module</span>.<span class="ident">toggle</span>();
                 }
@@ -297,33 +301,33 @@
 }
 
 <span class="doccomment">/// Mask function nb°**5**, `Mask::Fields`.</span>
-<span class="kw">fn</span> <span class="ident">mask_field</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) {
+<span class="kw">fn</span> <span class="ident">mask_field</span>(<span class="ident">qr</span>: <span class="kw-2">&amp;mut</span> <span class="ident">QRCode</span>) {
     <span class="kw">const</span> <span class="ident">OFFSETS</span>: [(<span class="ident">usize</span>, <span class="ident">usize</span>); <span class="number">4</span>] <span class="op">=</span> [(<span class="number">2</span>, <span class="number">3</span>), (<span class="number">3</span>, <span class="number">2</span>), (<span class="number">3</span>, <span class="number">4</span>), (<span class="number">4</span>, <span class="number">3</span>)];
-    <span class="ident">mask_5_6</span>(<span class="ident">mat</span>, <span class="kw-2">&amp;</span><span class="ident">OFFSETS</span>);
+    <span class="ident">mask_5_6</span>(<span class="ident">qr</span>, <span class="kw-2">&amp;</span><span class="ident">OFFSETS</span>);
 }
 
 <span class="doccomment">/// Mask function nb°**6**, `Mask::Diamonds`.</span>
-<span class="kw">fn</span> <span class="ident">mask_diamond</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) {
+<span class="kw">fn</span> <span class="ident">mask_diamond</span>(<span class="ident">qr</span>: <span class="kw-2">&amp;mut</span> <span class="ident">QRCode</span>) {
     <span class="attribute">#[<span class="ident">rustfmt::skip</span>]</span>
     <span class="kw">const</span> <span class="ident">OFFSETS</span>: [(<span class="ident">usize</span>, <span class="ident">usize</span>); <span class="number">12</span>] <span class="op">=</span> [
         (<span class="number">1</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">3</span>),
         (<span class="number">2</span>, <span class="number">4</span>), (<span class="number">3</span>, <span class="number">2</span>), (<span class="number">3</span>, <span class="number">4</span>), (<span class="number">4</span>, <span class="number">2</span>),
         (<span class="number">4</span>, <span class="number">3</span>), (<span class="number">4</span>, <span class="number">5</span>), (<span class="number">5</span>, <span class="number">4</span>), (<span class="number">5</span>, <span class="number">5</span>)
     ];
-    <span class="ident">mask_5_6</span>(<span class="ident">mat</span>, <span class="kw-2">&amp;</span><span class="ident">OFFSETS</span>);
+    <span class="ident">mask_5_6</span>(<span class="ident">qr</span>, <span class="kw-2">&amp;</span><span class="ident">OFFSETS</span>);
 }
 
 <span class="doccomment">/// Mask function nb°**7**, `Mask::Meadow`.</span>
-<span class="kw">fn</span> <span class="ident">mask_meadow</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>) {
-    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
-        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> <span class="ident">row</span>..<span class="ident">N</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">row</span>][<span class="ident">column</span>];
+<span class="kw">fn</span> <span class="ident">mask_meadow</span>(<span class="ident">qr</span>: <span class="kw-2">&amp;mut</span> <span class="ident">QRCode</span>) {
+    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">qr</span>.<span class="ident">size</span> {
+        <span class="kw">for</span> <span class="ident">column</span> <span class="kw">in</span> <span class="ident">row</span>..<span class="ident">qr</span>.<span class="ident">size</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">qr</span>[<span class="ident">row</span>][<span class="ident">column</span>];
             <span class="kw">if</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span>
                 <span class="op">&amp;&amp;</span> (((<span class="ident">row</span> <span class="op">+</span> <span class="ident">column</span>) <span class="op">%</span> <span class="number">2</span>) <span class="op">+</span> ((<span class="ident">row</span> <span class="op">*</span> <span class="ident">column</span>) <span class="op">%</span> <span class="number">3</span>)) <span class="op">%</span> <span class="number">2</span> <span class="op">==</span> <span class="number">0</span>
             {
                 <span class="ident">module</span>.<span class="ident">toggle</span>();
             }
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="ident">mat</span>[<span class="ident">column</span>][<span class="ident">row</span>];
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">module</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">qr</span>[<span class="ident">column</span>][<span class="ident">row</span>];
             <span class="kw">if</span> <span class="ident">column</span> <span class="op">!</span><span class="op">=</span> <span class="ident">row</span>
                 <span class="op">&amp;&amp;</span> <span class="ident">module</span>.<span class="ident">module_type</span>() <span class="op">==</span> <span class="ident">ModuleType::Data</span>
                 <span class="op">&amp;&amp;</span> (((<span class="ident">row</span> <span class="op">+</span> <span class="ident">column</span>) <span class="op">%</span> <span class="number">2</span>) <span class="op">+</span> ((<span class="ident">row</span> <span class="op">*</span> <span class="ident">column</span>) <span class="op">%</span> <span class="number">3</span>)) <span class="op">%</span> <span class="number">2</span> <span class="op">==</span> <span class="number">0</span>
@@ -335,16 +339,16 @@
 }
 
 <span class="doccomment">/// Applies the function at `mask_nb` on `mat`</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mask</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">mat</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Matrix</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span>, <span class="ident">mask</span>: <span class="ident">Mask</span>) {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mask</span>(<span class="ident">qr</span>: <span class="kw-2">&amp;mut</span> <span class="ident">QRCode</span>, <span class="ident">mask</span>: <span class="ident">Mask</span>) {
     <span class="kw">match</span> <span class="ident">mask</span> {
-        <span class="ident">Mask::Checkerboard</span> =&gt; <span class="ident">mask_checkerboard</span>(<span class="ident">mat</span>),
-        <span class="ident">Mask::HorizontalLines</span> =&gt; <span class="ident">mask_horizontal</span>(<span class="ident">mat</span>),
-        <span class="ident">Mask::VerticalLines</span> =&gt; <span class="ident">mask_vertical</span>(<span class="ident">mat</span>),
-        <span class="ident">Mask::DiagonalLines</span> =&gt; <span class="ident">mask_diagonal</span>(<span class="ident">mat</span>),
-        <span class="ident">Mask::LargeCheckerboard</span> =&gt; <span class="ident">mask_large_checkerboard</span>(<span class="ident">mat</span>),
-        <span class="ident">Mask::Fields</span> =&gt; <span class="ident">mask_field</span>(<span class="ident">mat</span>),
-        <span class="ident">Mask::Diamonds</span> =&gt; <span class="ident">mask_diamond</span>(<span class="ident">mat</span>),
-        <span class="ident">Mask::Meadow</span> =&gt; <span class="ident">mask_meadow</span>(<span class="ident">mat</span>),
+        <span class="ident">Mask::Checkerboard</span> =&gt; <span class="ident">mask_checkerboard</span>(<span class="ident">qr</span>),
+        <span class="ident">Mask::HorizontalLines</span> =&gt; <span class="ident">mask_horizontal</span>(<span class="ident">qr</span>),
+        <span class="ident">Mask::VerticalLines</span> =&gt; <span class="ident">mask_vertical</span>(<span class="ident">qr</span>),
+        <span class="ident">Mask::DiagonalLines</span> =&gt; <span class="ident">mask_diagonal</span>(<span class="ident">qr</span>),
+        <span class="ident">Mask::LargeCheckerboard</span> =&gt; <span class="ident">mask_large_checkerboard</span>(<span class="ident">qr</span>),
+        <span class="ident">Mask::Fields</span> =&gt; <span class="ident">mask_field</span>(<span class="ident">qr</span>),
+        <span class="ident">Mask::Diamonds</span> =&gt; <span class="ident">mask_diamond</span>(<span class="ident">qr</span>),
+        <span class="ident">Mask::Meadow</span> =&gt; <span class="ident">mask_meadow</span>(<span class="ident">qr</span>),
     }
 }
 </code></pre></div>
