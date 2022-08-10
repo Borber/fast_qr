@@ -184,36 +184,6 @@
 <span id="179">179</span>
 <span id="180">180</span>
 <span id="181">181</span>
-<span id="182">182</span>
-<span id="183">183</span>
-<span id="184">184</span>
-<span id="185">185</span>
-<span id="186">186</span>
-<span id="187">187</span>
-<span id="188">188</span>
-<span id="189">189</span>
-<span id="190">190</span>
-<span id="191">191</span>
-<span id="192">192</span>
-<span id="193">193</span>
-<span id="194">194</span>
-<span id="195">195</span>
-<span id="196">196</span>
-<span id="197">197</span>
-<span id="198">198</span>
-<span id="199">199</span>
-<span id="200">200</span>
-<span id="201">201</span>
-<span id="202">202</span>
-<span id="203">203</span>
-<span id="204">204</span>
-<span id="205">205</span>
-<span id="206">206</span>
-<span id="207">207</span>
-<span id="208">208</span>
-<span id="209">209</span>
-<span id="210">210</span>
-<span id="211">211</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Contains all functions required to encode any string as a QRCode</span>
 
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">unsafe_code</span>)]</span>
@@ -277,7 +247,7 @@
 }
 
 <span class="doccomment">/// Encodes numeric strings (i.e. &quot;123456789&quot;), referring to 8.4.2 of the spec.</span>
-<span class="kw">fn</span> <span class="ident">encode_numeric</span>(<span class="ident">compact</span>: <span class="kw-2">&amp;mut</span> <span class="ident">CompactQR</span>, <span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">cci_bits</span>: <span class="ident">usize</span>) {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">encode_numeric</span>(<span class="ident">compact</span>: <span class="kw-2">&amp;mut</span> <span class="ident">CompactQR</span>, <span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">cci_bits</span>: <span class="ident">usize</span>) {
     <span class="kw">fn</span> <span class="ident">encode_number</span>(<span class="ident">compact</span>: <span class="kw-2">&amp;mut</span> <span class="ident">CompactQR</span>, <span class="ident">number</span>: <span class="ident">usize</span>) {
         <span class="kw">match</span> <span class="ident">number</span> {
             <span class="number">0</span>..<span class="op">=</span><span class="number">9</span> =&gt; <span class="ident">compact</span>.<span class="ident">push_bits</span>(<span class="ident">number</span>, <span class="number">4</span>),
@@ -317,19 +287,23 @@
 }
 
 <span class="doccomment">/// Encodes alphanumeric strings (i.e. &quot;FAST-QR123&quot;), referring to 8.4.3 of the spec.</span>
-<span class="kw">fn</span> <span class="ident">encode_alphanumeric</span>(<span class="ident">compact</span>: <span class="kw-2">&amp;mut</span> <span class="ident">CompactQR</span>, <span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">cci_bits</span>: <span class="ident">usize</span>) {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">encode_alphanumeric</span>(<span class="ident">compact</span>: <span class="kw-2">&amp;mut</span> <span class="ident">CompactQR</span>, <span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">cci_bits</span>: <span class="ident">usize</span>) {
     <span class="ident">compact</span>.<span class="ident">push_bits</span>(<span class="number">0b0010</span>, <span class="number">4</span>);
     <span class="ident">compact</span>.<span class="ident">push_bits</span>(<span class="ident">input</span>.<span class="ident">len</span>(), <span class="ident">cci_bits</span>);
 
     <span class="kw">let</span> <span class="ident">even_size</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="ident">input</span>.<span class="ident">len</span>() <span class="op">%</span> <span class="number">2</span>;
-    <span class="ident">compact</span>.<span class="ident">push_u8_slice</span>(<span class="kw-2">&amp;</span><span class="ident">input</span>[..<span class="ident">even_size</span>]);
+    <span class="kw">for</span> <span class="ident">chunk</span> <span class="kw">in</span> <span class="ident">input</span>.<span class="ident">chunks_exact</span>(<span class="number">2</span>) {
+        <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">ascii_to_alphanumeric</span>(<span class="ident">chunk</span>[<span class="number">0</span>]);
+        <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">ascii_to_alphanumeric</span>(<span class="ident">chunk</span>[<span class="number">1</span>]);
+        <span class="ident">compact</span>.<span class="ident">push_bits</span>(<span class="ident">a</span> <span class="op">*</span> <span class="number">45</span> <span class="op">+</span> <span class="ident">b</span>, <span class="number">11</span>);
+    }
     <span class="kw">if</span> <span class="ident">even_size</span> <span class="op">!</span><span class="op">=</span> <span class="ident">input</span>.<span class="ident">len</span>() {
         <span class="ident">compact</span>.<span class="ident">push_bits</span>(<span class="ident">ascii_to_alphanumeric</span>(<span class="kw-2">*</span><span class="ident">input</span>.<span class="ident">last</span>().<span class="ident">unwrap</span>()), <span class="number">6</span>);
     }
 }
 
 <span class="doccomment">/// Encodes any string (i.e. &quot;https://fast-qr.com/🚀&quot;), referring to 8.4.4 of the spec.</span>
-<span class="kw">fn</span> <span class="ident">encode_byte</span>(<span class="ident">compact</span>: <span class="kw-2">&amp;mut</span> <span class="ident">CompactQR</span>, <span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">cci_bits</span>: <span class="ident">usize</span>) {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">encode_byte</span>(<span class="ident">compact</span>: <span class="kw-2">&amp;mut</span> <span class="ident">CompactQR</span>, <span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">cci_bits</span>: <span class="ident">usize</span>) {
     <span class="ident">compact</span>.<span class="ident">push_bits</span>(<span class="number">0b0100</span>, <span class="number">4</span>);
     <span class="ident">compact</span>.<span class="ident">push_bits</span>(<span class="ident">input</span>.<span class="ident">len</span>(), <span class="ident">cci_bits</span>);
     <span class="ident">compact</span>.<span class="ident">push_u8_slice</span>(<span class="ident">input</span>);
@@ -358,44 +332,10 @@
 <span class="doccomment">/// Converts ascii alnum to it&#39;s numeric value, characters included in AlphaNumeric are: \</span>
 <span class="doccomment">/// 0-9, A-Z, $%*./:+-?.= [space] \</span>
 <span class="doccomment">/// referring to 7.1 of the spec.</span>
-<span class="kw">const</span> <span class="kw">fn</span> <span class="ident">ascii_to_alphanumeric</span>(<span class="ident">c</span>: <span class="ident">u8</span>) -&gt; <span class="ident">usize</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">ascii_to_alphanumeric</span>(<span class="ident">c</span>: <span class="ident">u8</span>) -&gt; <span class="ident">usize</span> {
     <span class="kw">match</span> <span class="ident">c</span> {
-        <span class="string">b&#39;0&#39;</span> =&gt; <span class="number">0</span>,
-        <span class="string">b&#39;1&#39;</span> =&gt; <span class="number">1</span>,
-        <span class="string">b&#39;2&#39;</span> =&gt; <span class="number">2</span>,
-        <span class="string">b&#39;3&#39;</span> =&gt; <span class="number">3</span>,
-        <span class="string">b&#39;4&#39;</span> =&gt; <span class="number">4</span>,
-        <span class="string">b&#39;5&#39;</span> =&gt; <span class="number">5</span>,
-        <span class="string">b&#39;6&#39;</span> =&gt; <span class="number">6</span>,
-        <span class="string">b&#39;7&#39;</span> =&gt; <span class="number">7</span>,
-        <span class="string">b&#39;8&#39;</span> =&gt; <span class="number">8</span>,
-        <span class="string">b&#39;9&#39;</span> =&gt; <span class="number">9</span>,
-        <span class="string">b&#39;A&#39;</span> =&gt; <span class="number">10</span>,
-        <span class="string">b&#39;B&#39;</span> =&gt; <span class="number">11</span>,
-        <span class="string">b&#39;C&#39;</span> =&gt; <span class="number">12</span>,
-        <span class="string">b&#39;D&#39;</span> =&gt; <span class="number">13</span>,
-        <span class="string">b&#39;E&#39;</span> =&gt; <span class="number">14</span>,
-        <span class="string">b&#39;F&#39;</span> =&gt; <span class="number">15</span>,
-        <span class="string">b&#39;G&#39;</span> =&gt; <span class="number">16</span>,
-        <span class="string">b&#39;H&#39;</span> =&gt; <span class="number">17</span>,
-        <span class="string">b&#39;I&#39;</span> =&gt; <span class="number">18</span>,
-        <span class="string">b&#39;J&#39;</span> =&gt; <span class="number">19</span>,
-        <span class="string">b&#39;K&#39;</span> =&gt; <span class="number">20</span>,
-        <span class="string">b&#39;L&#39;</span> =&gt; <span class="number">21</span>,
-        <span class="string">b&#39;M&#39;</span> =&gt; <span class="number">22</span>,
-        <span class="string">b&#39;N&#39;</span> =&gt; <span class="number">23</span>,
-        <span class="string">b&#39;O&#39;</span> =&gt; <span class="number">24</span>,
-        <span class="string">b&#39;P&#39;</span> =&gt; <span class="number">25</span>,
-        <span class="string">b&#39;Q&#39;</span> =&gt; <span class="number">26</span>,
-        <span class="string">b&#39;R&#39;</span> =&gt; <span class="number">27</span>,
-        <span class="string">b&#39;S&#39;</span> =&gt; <span class="number">28</span>,
-        <span class="string">b&#39;T&#39;</span> =&gt; <span class="number">29</span>,
-        <span class="string">b&#39;U&#39;</span> =&gt; <span class="number">30</span>,
-        <span class="string">b&#39;V&#39;</span> =&gt; <span class="number">31</span>,
-        <span class="string">b&#39;W&#39;</span> =&gt; <span class="number">32</span>,
-        <span class="string">b&#39;X&#39;</span> =&gt; <span class="number">33</span>,
-        <span class="string">b&#39;Y&#39;</span> =&gt; <span class="number">34</span>,
-        <span class="string">b&#39;Z&#39;</span> =&gt; <span class="number">35</span>,
+        <span class="string">b&#39;0&#39;</span>..<span class="op">=</span><span class="string">b&#39;9&#39;</span> =&gt; (<span class="ident">c</span> <span class="op">-</span> <span class="string">b&#39;0&#39;</span>) <span class="kw">as</span> <span class="ident">usize</span>,
+        <span class="string">b&#39;A&#39;</span>..<span class="op">=</span><span class="string">b&#39;Z&#39;</span> =&gt; (<span class="ident">c</span> <span class="op">-</span> <span class="string">b&#39;A&#39;</span>) <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="number">10</span>,
         <span class="string">b&#39; &#39;</span> =&gt; <span class="number">36</span>,
         <span class="string">b&#39;$&#39;</span> =&gt; <span class="number">37</span>,
         <span class="string">b&#39;%&#39;</span> =&gt; <span class="number">38</span>,
@@ -405,7 +345,7 @@
         <span class="string">b&#39;.&#39;</span> =&gt; <span class="number">42</span>,
         <span class="string">b&#39;/&#39;</span> =&gt; <span class="number">43</span>,
         <span class="string">b&#39;:&#39;</span> =&gt; <span class="number">44</span>,
-        <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(), <span class="comment">// unreachable!()</span>
+        <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Character &#39;{}&#39; should not occur&quot;</span>, <span class="ident">c</span> <span class="kw">as</span> <span class="ident">char</span>), <span class="comment">// unreachable!()</span>
     }
 }
 

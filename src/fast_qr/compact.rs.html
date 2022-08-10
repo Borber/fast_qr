@@ -352,7 +352,7 @@
     <span class="doccomment">/// Increase the length of data to specified length.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">increase_len</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">data_length</span>: <span class="ident">usize</span>) {
         <span class="kw">if</span> <span class="ident">data_length</span> <span class="op">/</span> <span class="number">8</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">len</span>() {
-            <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">resize</span>(<span class="ident">data_length</span> <span class="op">/</span> <span class="number">8</span>, <span class="number">0</span>);
+            <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">resize</span>(<span class="ident">data_length</span> <span class="op">/</span> <span class="number">8</span> <span class="op">+</span> <span class="number">1</span>, <span class="number">0</span>);
         }
     }
 
