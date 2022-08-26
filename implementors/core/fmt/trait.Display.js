@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["fast_qr"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.62.1/core/fmt/trait.Display.html\" title=\"trait core::fmt::Display\">Display</a> for <a class=\"enum\" href=\"fast_qr/enum.ECL.html\" title=\"enum fast_qr::ECL\">ECL</a>","synthetic":false,"types":["fast_qr::ecl::ECL"]}];
+implementors["fast_qr"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.63.0/core/fmt/trait.Display.html\" title=\"trait core::fmt::Display\">Display</a> for <a class=\"enum\" href=\"fast_qr/enum.ECL.html\" title=\"enum fast_qr::ECL\">ECL</a>","synthetic":false,"types":["fast_qr::ecl::ECL"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

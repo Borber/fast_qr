@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["svg","Conversion to SVGs"]]});
+window.SIDEBAR_ITEMS = {"mod":[["svg","Conversion to SVGs"]]};
